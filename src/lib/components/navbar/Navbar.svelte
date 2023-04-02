@@ -11,7 +11,7 @@
 			(document.querySelector(`nav > ul > li[aria-current="page"]`) as HTMLElement) ||
 			document.createElement('li');
 		arrow.style.left = `${currentPage.offsetLeft + currentPage.offsetWidth / 2 - 6}px`;
-		if (currentPage.querySelector('a')) currentPage.querySelector('a')!.style.fontWeight = '600';
+		if (currentPage.querySelector('a')) currentPage.querySelector('a')!.style.fontWeight = '500';
 
 		Array.from(
 			document.querySelectorAll('nav > ul > li') as any as HTMLCollectionOf<HTMLElement>
@@ -19,18 +19,18 @@
 			li.addEventListener('mouseenter', (e) => {
 				arrow.style.left = `${li.offsetLeft + li.offsetWidth / 2 - 6}px`;
 				if (currentPage.querySelector('a'))
-					currentPage.querySelector('a')!.style.fontWeight = '400';
-				li.querySelector('a')!.style.fontWeight = '600';
+					currentPage.querySelector('a')!.style.fontWeight = '300';
+				li.querySelector('a')!.style.fontWeight = '500';
 			});
 
 			li.addEventListener('mouseleave', (e) => {
-				li.querySelector('a')!.style.fontWeight = '400';
+				li.querySelector('a')!.style.fontWeight = '300';
 			});
 		});
 
 		document.querySelector('header > nav > ul')!.addEventListener('mouseleave', (e) => {
 			arrow.style.left = `${currentPage.offsetLeft + currentPage.offsetWidth / 2 - 6}px`;
-			if (currentPage.querySelector('a')) currentPage.querySelector('a')!.style.fontWeight = '600';
+			if (currentPage.querySelector('a')) currentPage.querySelector('a')!.style.fontWeight = '500';
 		});
 	});
 </script>

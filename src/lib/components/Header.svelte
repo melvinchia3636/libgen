@@ -4,7 +4,7 @@
 	import Navbar from './navbar/Navbar.svelte';
 </script>
 
-<header class="relative z-[9999]">
+<header class="fixed top-0 w-full z-[9999]">
 	<a href="/" class="flex items-center gap-2 p-4 text-lg font-light">
 		<Icon icon="mdi:book-open-page-variant-outline" class="w-7 h-7 text-orange-500 flex-shrink-0" />
 		Libgen.is

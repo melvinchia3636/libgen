@@ -8,38 +8,47 @@
 		Switch
 	} from '@rgossiaux/svelte-headlessui';
 	import Icon from '@iconify/svelte';
+	import {
+		downloadType,
+		viewResults,
+		resultsCount,
+		searchWithMask,
+		searchField
+	} from '$lib/store/search';
+	import { downloadTypes, searchFields } from '$lib/store/constants';
+	import type { IDownloadType, ISearchFieldType } from '$lib/store/types';
 
 	export let isFilterOpen = false;
 
-	const downloadTypes = [
-		{ id: 1, name: 'Resumed dl with original filename' },
-		{ id: 2, name: 'Resumed dl with transit filename' },
-		{ id: 3, name: 'Resumed dl with md5 filename' },
-		{ id: 4, name: 'Open file in browser' }
-	];
+	let selectedDownloadType: IDownloadType;
+	let selectedViewResults: boolean;
+	let resPerPage: number;
+	let srchWithMask: boolean;
+	let selectedSearchField: ISearchFieldType;
 
-	const searchFields = [
-		{ id: 1, name: 'Default' },
-		{ id: 2, name: 'Title' },
-		{ id: 3, name: 'Author(s)' },
-		{ id: 4, name: 'Series' },
-		{ id: 5, name: 'Publisher' },
-		{ id: 6, name: 'Year' },
-		{ id: 7, name: 'ISBN' },
-		{ id: 8, name: 'Language' },
-		{ id: 9, name: 'MD5' },
-		{ id: 10, name: 'Tags' },
-		{ id: 11, name: 'Extension' }
-	];
+	downloadType.subscribe((value) => {
+		selectedDownloadType = value;
+	});
 
-	let selectedDownloadType = downloadTypes[0];
-	let resPerPage = 25;
-	let searchWithMask = false;
-	let selectedSearchField = searchFields[0];
+	viewResults.subscribe((value) => {
+		selectedViewResults = value;
+	});
+
+	resultsCount.subscribe((value) => {
+		resPerPage = value;
+	});
+
+	searchWithMask.subscribe((value) => {
+		srchWithMask = value;
+	});
+
+	searchField.subscribe((value) => {
+		selectedSearchField = value;
+	});
 </script>
 
 <div
-	class="bg-[#f6f8fa] w-3/5 rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
+	class="bg-[#f6f8fa] w-full rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
 		? 'max-h-[30rem] py-2'
 		: 'max-h-0 py-0'}"
 >
@@ -53,7 +62,7 @@
 			</div>
 			<Listbox
 				value={selectedDownloadType}
-				on:change={(e) => (selectedDownloadType = e.detail)}
+				on:change={(e) => downloadType.set(e.detail)}
 				class="relative"
 			>
 				<ListboxButton
@@ -72,17 +81,17 @@
 					class="absolute top-8 right-0 z-[9999]"
 				>
 					<ListboxOptions class="bg-[#f6f8fa] rounded-md shadow-md overflow-hidden w-80">
-						{#each downloadTypes as category, idx (category.id)}
+						{#each downloadTypes as downloadType, idx (downloadType.id)}
 							<div class="px-2 hover:bg-slate-200/50 cursor-pointer">
 								<ListboxOption
-									value={category}
+									value={downloadType}
 									class={({ selected }) =>
 										'px-2 py-3 border-slate-200 flex items-center gap-2 justify-between' +
 										(selected ? ' font-medium' : ' font-light') +
 										(idx === downloadTypes.length - 1 ? ' border-b-0' : ' border-b')}
 									let:selected
 								>
-									{category.name}
+									{downloadType.name}
 									{#if selected}
 										<Icon icon="uil:check" class="text-orange-500 w-5 h-5" />
 									{/if}
@@ -108,6 +117,7 @@
 						name="flexRadioDefault"
 						id="radioDefault01"
 						checked
+						on:click={() => viewResults.set('simple')}
 					/>
 					<label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
 						Simple
@@ -119,6 +129,7 @@
 						type="radio"
 						name="flexRadioDefault"
 						id="radioDefault02"
+						on:click={() => viewResults.set('detailed')}
 					/>
 					<label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
 						Detailed
@@ -137,7 +148,7 @@
 				{#each [25, 50, 100] as number}
 					<button
 						class={resPerPage === number ? 'font-semibold text-orange-500' : ''}
-						on:click={() => (resPerPage = number)}
+						on:click={() => resultsCount.set(number)}
 					>
 						{number}
 					</button>
@@ -153,15 +164,11 @@
 			</div>
 			<div class="w-80">
 				<Switch
-					checked={searchWithMask}
-					on:change={(e) => (searchWithMask = e.detail)}
-					class={searchWithMask ? 'switch switch-enabled' : 'switch switch-disabled'}
+					checked={srchWithMask}
+					on:change={(e) => searchWithMask.set(e.detail)}
+					class={srchWithMask ? 'switch switch-enabled' : 'switch switch-disabled'}
 				>
-					<span
-						class="toggle"
-						class:toggle-on={searchWithMask}
-						class:toggle-off={!searchWithMask}
-					/>
+					<span class="toggle" class:toggle-on={srchWithMask} class:toggle-off={!srchWithMask} />
 				</Switch>
 			</div>
 		</li>
@@ -172,7 +179,7 @@
 			</div>
 			<Listbox
 				value={selectedSearchField}
-				on:change={(e) => (selectedSearchField = e.detail)}
+				on:change={(e) => searchField.set(e.detail)}
 				class="relative"
 			>
 				<ListboxButton

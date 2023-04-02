@@ -1,5 +1,10 @@
 <script>
+	import SearchBox from '$lib/components/search/SearchBox.svelte';
+	import SearchFilter from '$lib/components/search/SearchFilter.svelte';
+
 	export let data;
+
+	let isFilterOpen = false;
 </script>
 
 <svelte:head>
@@ -10,6 +15,10 @@
 <section class="flex-1 flex flex-col items-center justify-center my-32">
 	<h1 class="text-4xl text-left w-4/5">Search results for: Minecraft</h1>
 	<p class="text-left w-4/5 mb-8 mt-2">{data.resultsCount}</p>
+	<div class="w-4/5">
+		<SearchBox bind:isFilterOpen />
+		<SearchFilter bind:isFilterOpen />
+	</div>
 	<table class="w-4/5">
 		<thead class="border-b border-slate-300">
 			<tr>
