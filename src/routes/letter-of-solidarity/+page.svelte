@@ -18,7 +18,7 @@
 		</p>
 		<p>
 			There are many businessmen who own knowledge today. Consider Elsevier, the largest scholarly
-			publisher, whose 37% profit margin <sup class="underline text-orange-500 font-medium">1</sup>
+			publisher, whose 37% profit margin <sup id="fnref-1" class="underline text-orange-500 font-medium">1</sup>
 			stands in sharp contrast to the rising fees, expanding student loan debt and poverty-level wages
 			for adjunct faculty. Elsevier owns some of the largest databases of academic material, which are
 			licensed at prices so scandalously high that even Harvard, the richest university of the global
@@ -27,15 +27,15 @@
 				>We faculty do the research, write the papers, referee papers by other researchers, serve on
 				editorial boards, all of it for free … and then we buy back the results of our labour at
 				outrageous prices.</i
-			>" <sup class="underline text-orange-500 font-medium">2</sup>
+			>" <sup id="fnref-2" class="underline text-orange-500 font-medium">2</sup>
 			For all the work supported by public money benefiting scholarly publishers, particularly the peer
 			review that grounds their legitimacy, journal articles are priced such that they prohibit access
 			to science to many academics - and all non-academics - across the world, and render it a token
-			of privilege. <sup class="underline text-orange-500 font-medium">3</sup>
+			of privilege. <sup id="fnref-3" class="underline text-orange-500 font-medium">3</sup>
 		</p>
 		<p>
 			Elsevier has recently filed a copyright infringement suit in New York against Science Hub and
-			Library Genesis claiming millions of dollars in damages. <sup
+			Library Genesis claiming millions of dollars in damages. <sup id="fnref-4"
 				class="underline text-orange-500 font-medium">4</sup
 			> This has come as a big blow, not just to the administrators of the websites but also to thousands
 			of researchers around the world for whom these sites are the only viable source of academic materials.
@@ -47,13 +47,13 @@
 			editorial board of highly-esteemed journal Lingua handing in their collective resignation,
 			citing as their reason the refusal by Elsevier to go open access and give up on the high fees
 			it charges to authors and their academic institutions. As we write these lines, a petition is
-			doing the rounds demanding that Taylor & Francis doesn't shut down Ashgate <sup
+			doing the rounds demanding that Taylor & Francis doesn't shut down Ashgate <sup id="fnref-5"
 				class="underline text-orange-500 font-medium">5</sup
 			> , a formerly independent humanities publisher that it acquired earlier in 2015. It is
 			threatened to go the way of other small publishers that are being rolled over by the growing
 			monopoly and concentration in the publishing market. These are just some of the signs that the
 			system is broken. It devalues us, authors, editors and readers alike. It parasites on our
-			labor, it thwarts our service to the public, it denies us access. <sup class="underline text-orange-500 font-medium">6</sup>
+			labor, it thwarts our service to the public, it denies us access. <sup id="fnref-6" class="underline text-orange-500 font-medium">6</sup>
 		</p>
 		<p>
 			We have the means and methods to make knowledge accessible to everyone, with no economic
@@ -64,13 +64,13 @@
 			and again. Before Science Hub and Library Genesis there was Library.nu or Gigapedia; before
 			Gigapedia there was textz.com; before textz.com there was little; and before there was little
 			there was nothing. That's what they want: to reduce most of us back to nothing. And they have
-			the full support of the courts and law to do exactly that. <sup class="underline text-orange-500 font-medium">7</sup>
+			the full support of the courts and law to do exactly that. <sup id="fnref-7" class="underline text-orange-500 font-medium">7</sup>
 		</p>
 		<p>
 			In Elsevier's case against Sci-Hub and Library Genesis, the judge said: "<i
 				>simply making copyrighted content available for free via a foreign website, disserves the
 				public interest</i
-			>" <sup class="underline text-orange-500 font-medium">8</sup> . Alexandra Elbakyan's original plea put the stakes much higher: "<i
+			>" <sup id="fnref-8" class="underline text-orange-500 font-medium">8</sup> . Alexandra Elbakyan's original plea put the stakes much higher: "<i
 				>If Elsevier manages to shut down our projects or force them into the darknet, that will
 				demonstrate an important idea: that the public does not have the right to knowledge.</i
 			>"
@@ -96,7 +96,7 @@
 				of us, around the world, we'll not just send a strong message opposing the privatization of
 				knowledge — we'll make it a thing of the past. Will you join us?</i
 			>
-			" <sup class="underline text-orange-500 font-medium">9</sup>
+			" <sup id="fnref-9" class="underline text-orange-500 font-medium">9</sup>
 		</p>
 		<p>
 			We find ourselves at a decisive moment. This is the time to recognize that the very existence
@@ -115,27 +115,27 @@
         <div class="mt-16 pt-8 border-t-2 border-slate-900">
             <ol class="list-decimal ml-6 flex flex-col gap-2">
                 <li id="fn-1">
-                    Larivière, Vincent, Stefanie Haustein, and Philippe Mongeon. “<a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127502">The Oligopoly of Academic Publishers in the Digital Era.</a>” PLoS ONE 10, no. 6 (June 10, 2015): e0127502. doi:10.1371/journal.pone.0127502., <br>“<a href="http://svpow.com/2012/01/13/the-obscene-profits-of-commercial-scholarly-publishers/">The Obscene Profits of Commercial Scholarly Publishers.</a>” svpow.com. Accessed November 30, 2015. &nbsp;<a href="#fnref-1" class="footnoteBackLink" title="Jump back to footnote 1 in the text.">↩</a>
+                    Larivière, Vincent, Stefanie Haustein, and Philippe Mongeon. “<a class="underline" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0127502">The Oligopoly of Academic Publishers in the Digital Era.</a>” PLoS ONE 10, no. 6 (June 10, 2015): e0127502. doi:10.1371/journal.pone.0127502., <br>“<a class="underline" href="http://svpow.com/2012/01/13/the-obscene-profits-of-commercial-scholarly-publishers/">The Obscene Profits of Commercial Scholarly Publishers.</a>” svpow.com. Accessed November 30, 2015. &nbsp;<a href="#fnref-1" class="footnoteBackLink" title="Jump back to footnote 1 in the text.">↩</a>
                 </li>
     
                 <li id="fn-2">
-                    Sample, Ian. “<a href="http://www.theguardian.com/science/2012/apr/24/harvard-university-journal-publishers-prices">Harvard University Says It Can’t Afford Journal Publishers’ Prices.</a>” The Guardian, April 24, 2012, sec. Science. theguardian.com. &nbsp;<a href="#fnref-2" class="footnoteBackLink" title="Jump back to footnote 2 in the text.">↩</a>
+                    Sample, Ian. “<a class="underline" href="http://www.theguardian.com/science/2012/apr/24/harvard-university-journal-publishers-prices">Harvard University Says It Can’t Afford Journal Publishers’ Prices.</a>” The Guardian, April 24, 2012, sec. Science. theguardian.com. &nbsp;<a href="#fnref-2" class="footnoteBackLink" title="Jump back to footnote 2 in the text.">↩</a>
                 </li>
     
                 <li id="fn-3">
-                    “<a href="http://www.aljazeera.com/indepth/opinion/2012/10/20121017558785551.html">Academic Paywalls Mean Publish and Perish - Al Jazeera English.</a>” Accessed November 30, 2015. aljazeera.com. &nbsp;<a href="#fnref-3" class="footnoteBackLink" title="Jump back to footnote 3 in the text.">↩</a>
+                    “<a class="underline" href="http://www.aljazeera.com/indepth/opinion/2012/10/20121017558785551.html">Academic Paywalls Mean Publish and Perish - Al Jazeera English.</a>” Accessed November 30, 2015. aljazeera.com. &nbsp;<a href="#fnref-3" class="footnoteBackLink" title="Jump back to footnote 3 in the text.">↩</a>
                 </li>
     
                 <li id="fn-4">
-                    “<a href="https://torrentfreak.com/sci-hub-tears-down-academias-illegal-copyright-paywalls-150627/">Sci-Hub Tears Down Academia’s ‘Illegal’ Copyright Paywalls.</a>” TorrentFreak. Accessed November 30, 2015. torrentfreak.com. &nbsp;<a href="#fnref-4" class="footnoteBackLink" title="Jump back to footnote 4 in the text.">↩</a>
+                    “<a class="underline" href="https://torrentfreak.com/sci-hub-tears-down-academias-illegal-copyright-paywalls-150627/">Sci-Hub Tears Down Academia’s ‘Illegal’ Copyright Paywalls.</a>” TorrentFreak. Accessed November 30, 2015. torrentfreak.com. &nbsp;<a href="#fnref-4" class="footnoteBackLink" title="Jump back to footnote 4 in the text.">↩</a>
                 </li>
     
                 <li id="fn-5">
-                    “<a href="https://www.change.org/p/save-ashgate-publishing">Save Ashgate Publishing.</a>” Change.org. Accessed November 30, 2015. change.org. &nbsp;<a href="#fnref-5" class="footnoteBackLink" title="Jump back to footnote 5 in the text.">↩</a>
+                    “<a class="underline" href="https://www.change.org/p/save-ashgate-publishing">Save Ashgate Publishing.</a>” Change.org. Accessed November 30, 2015. change.org. &nbsp;<a href="#fnref-5" class="footnoteBackLink" title="Jump back to footnote 5 in the text.">↩</a>
                 </li>
     
                 <li id="fn-6">
-                    “<a href="http://thecostofknowledge.com/">The Cost of Knowledge.</a>” Accessed November 30, 2015. thecostofknowledge.com. &nbsp;<a href="#fnref-6" class="footnoteBackLink" title="Jump back to footnote 6 in the text.">↩</a>
+                    “<a class="underline" href="http://thecostofknowledge.com/">The Cost of Knowledge.</a>” Accessed November 30, 2015. thecostofknowledge.com. &nbsp;<a href="#fnref-6" class="footnoteBackLink" title="Jump back to footnote 6 in the text.">↩</a>
                 </li>
     
                 <li id="fn-7">
@@ -143,11 +143,11 @@
                 </li>
     
                 <li id="fn-8">
-                    “<a href="https://torrentfreak.com/court-orders-shutdown-of-libgen-bookfi-and-sci-hub-151102/">Court Orders Shutdown of Libgen, Bookfi and Sci-Hub.</a>” TorrentFreak. Accessed November 30, 2015. torrentfreak.com. &nbsp;<a href="#fnref-8" class="footnoteBackLink" title="Jump back to footnote 8 in the text.">↩</a>
+                    “<a class="underline" href="https://torrentfreak.com/court-orders-shutdown-of-libgen-bookfi-and-sci-hub-151102/">Court Orders Shutdown of Libgen, Bookfi and Sci-Hub.</a>” TorrentFreak. Accessed November 30, 2015. torrentfreak.com. &nbsp;<a href="#fnref-8" class="footnoteBackLink" title="Jump back to footnote 8 in the text.">↩</a>
                 </li>
     
                 <li id="fn-9">
-                    “<a href="https://archive.org/stream/GuerillaOpenAccessManifesto/Goamjuly2008_djvu.txt">Guerilla Open Access Manifesto.</a>” Internet Archive. Accessed November 30, 2015. archive.org. &nbsp;<a href="#fnref-9" class="footnoteBackLink" title="Jump back to footnote 9 in the text.">↩</a>
+                    “<a class="underline" href="https://archive.org/stream/GuerillaOpenAccessManifesto/Goamjuly2008_djvu.txt">Guerilla Open Access Manifesto.</a>” Internet Archive. Accessed November 30, 2015. archive.org. &nbsp;<a href="#fnref-9" class="footnoteBackLink" title="Jump back to footnote 9 in the text.">↩</a>
                 </li>
             </ol>
         </div>
@@ -158,5 +158,13 @@
 	p {
 		margin-top: 2rem;
 		line-height: 1.5;
+	}
+
+	a {
+		@apply transition-all;
+	}
+
+	a:hover {
+		@apply text-orange-500;
 	}
 </style>

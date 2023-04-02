@@ -21,11 +21,11 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Library Genesis</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="flex-1 flex flex-col items-center justify-center pb-20">
+<section class="flex-1 flex flex-col items-center justify-center pb-16">
 	<h1 class="text-[2.5rem] uppercase font-light tracking-widest pb-2">Library Genesis</h1>
 	<p class="mb-8 font-light tracking-wide">
 		Enables free access to content that is otherwise paywalled or not digitized elsewhere
@@ -45,12 +45,16 @@
 				leaveFrom="opacity-100"
 				leaveTo="opacity-0"
 			>
-				<ListboxOptions class="absolute bg-[#f6f8fa] rounded-md top-16 left-0.5 overflow-hidden w-64">
+				<ListboxOptions
+					class="absolute bg-[#f6f8fa] rounded-md top-16 left-0.5 overflow-hidden w-64"
+				>
 					{#each categories as category (category.id)}
 						<div class="px-2 hover:bg-slate-200/50 cursor-pointer">
 							<ListboxOption
 								value={category}
-								class={({ selected }) => "px-2 py-3 border-b border-slate-300 flex items-center gap-2 justify-between" + (selected ? " font-medium" : "")}
+								class={({ selected }) =>
+									'px-2 py-3 border-b border-slate-300 flex items-center gap-2 justify-between' +
+									(selected ? ' font-medium' : ' font-light')}
 								let:selected
 							>
 								{category.name}
@@ -70,7 +74,10 @@
 			placeholder="Search..."
 		/>
 		<button on:click={() => (isFilterOpen = !isFilterOpen)}>
-			<Icon icon="material-symbols:filter-list-rounded" class="{isFilterOpen ? "text-orange-500" : "text-slate-700"} transition-all\ w-5 h-5" />
+			<Icon
+				icon="material-symbols:filter-list-rounded"
+				class="{isFilterOpen ? 'text-orange-500' : 'text-slate-700'} transition-all\ w-5 h-5"
+			/>
 		</button>
 	</div>
 	<SearchFilter bind:isFilterOpen />

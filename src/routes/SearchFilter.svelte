@@ -18,27 +18,31 @@
 		{ id: 4, name: 'Open file in browser' }
 	];
 
-    const searchFields = [
-        { id: 1, name: 'Default'},
-        { id: 2, name: 'Title'},
-        { id: 3, name: 'Author(s)'},
-        { id: 4, name: 'Series'},
-        { id: 5, name: 'Publisher'},
-        { id: 6, name: 'Year'},
-        { id: 7, name: 'ISBN'},
-        { id: 8, name: 'Language'},
-        { id: 9, name: 'MD5'},
-        { id: 10, name: 'Tags'},
-        { id: 11, name: 'Extension'},
-    ]
+	const searchFields = [
+		{ id: 1, name: 'Default' },
+		{ id: 2, name: 'Title' },
+		{ id: 3, name: 'Author(s)' },
+		{ id: 4, name: 'Series' },
+		{ id: 5, name: 'Publisher' },
+		{ id: 6, name: 'Year' },
+		{ id: 7, name: 'ISBN' },
+		{ id: 8, name: 'Language' },
+		{ id: 9, name: 'MD5' },
+		{ id: 10, name: 'Tags' },
+		{ id: 11, name: 'Extension' }
+	];
 
 	let selectedDownloadType = downloadTypes[0];
 	let resPerPage = 25;
 	let searchWithMask = false;
-    let selectedSearchField = searchFields[0];
+	let selectedSearchField = searchFields[0];
 </script>
 
-<div class="bg-[#f6f8fa] w-3/5 rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen ? "max-h-[30rem] py-2" : "max-h-0 py-0"}">
+<div
+	class="bg-[#f6f8fa] w-3/5 rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
+		? 'max-h-[30rem] py-2'
+		: 'max-h-0 py-0'}"
+>
 	<ul class="flex flex-col divide-y divide-slate-200">
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
@@ -52,7 +56,9 @@
 				on:change={(e) => (selectedDownloadType = e.detail)}
 				class="relative"
 			>
-				<ListboxButton class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 rounded-md">
+				<ListboxButton
+					class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 rounded-md"
+				>
 					{selectedDownloadType.name}
 					<Icon icon="uil:angle-down" class="text-slate-700 w-5 h-5" />
 				</ListboxButton>
@@ -63,18 +69,16 @@
 					leave="transition-opacity duration-150"
 					leaveFrom="opacity-100"
 					leaveTo="opacity-0"
-                    class="absolute top-8 right-0 z-[9999]"
+					class="absolute top-8 right-0 z-[9999]"
 				>
-					<ListboxOptions
-						class="bg-[#f6f8fa] rounded-md shadow-md overflow-hidden w-80"
-					>
+					<ListboxOptions class="bg-[#f6f8fa] rounded-md shadow-md overflow-hidden w-80">
 						{#each downloadTypes as category, idx (category.id)}
 							<div class="px-2 hover:bg-slate-200/50 cursor-pointer">
 								<ListboxOption
 									value={category}
 									class={({ selected }) =>
 										'px-2 py-3 border-slate-200 flex items-center gap-2 justify-between' +
-										(selected ? ' font-medium' : '') +
+										(selected ? ' font-medium' : ' font-light') +
 										(idx === downloadTypes.length - 1 ? ' border-b-0' : ' border-b')}
 									let:selected
 								>
@@ -164,16 +168,16 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Search field</h2>
-				<p class="text-slate-400 text-sm font-light">
-					Select which fields to search in.
-				</p>
+				<p class="text-slate-400 text-sm font-light">Select which fields to search in.</p>
 			</div>
-            <Listbox
+			<Listbox
 				value={selectedSearchField}
 				on:change={(e) => (selectedSearchField = e.detail)}
 				class="relative"
 			>
-				<ListboxButton class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 rounded-md">
+				<ListboxButton
+					class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 rounded-md"
+				>
 					{selectedSearchField.name}
 					<Icon icon="uil:angle-down" class="text-slate-700 w-5 h-5" />
 				</ListboxButton>
@@ -184,10 +188,10 @@
 					leave="transition-opacity duration-150"
 					leaveFrom="opacity-100"
 					leaveTo="opacity-0"
-                    class="absolute bottom-8 right-0 z-[9999]"
+					class="absolute bottom-8 right-0 z-[9999]"
 				>
 					<ListboxOptions
-						class="bg-[#f6f8fa] rounded-md shadow-md overflow-hidden w-80"
+						class="bg-[#f6f8fa] rounded-md shadow-md w-80 h-72 overflow-scroll border border-slate-200"
 					>
 						{#each searchFields as searchField, idx (searchField.id)}
 							<div class="px-2 hover:bg-slate-200/50 cursor-pointer">
@@ -195,7 +199,7 @@
 									value={searchField}
 									class={({ selected }) =>
 										'px-2 py-3 border-slate-200 flex items-center gap-2 justify-between' +
-										(selected ? ' font-medium' : '') +
+										(selected ? ' font-medium' : ' font-light') +
 										(idx === searchFields.length - 1 ? ' border-b-0' : ' border-b')}
 									let:selected
 								>
@@ -221,16 +225,16 @@
 		border-radius: 9999px;
 		height: 1.5rem;
 		width: 2.75rem;
-        transition: all 0.2s ease;
-        @apply shadow-sm;
+		transition: all 0.2s ease;
+		@apply shadow-sm;
 	}
 
 	:global(.switch-enabled) {
-		@apply bg-orange-500;
+		background-color: rgb(249 115 22) !important;
 	}
 
 	:global(.switch-disabled) {
-		@apply bg-slate-200;
+		background-color: rgb(226 232 240) !important;
 	}
 
 	.toggle {
