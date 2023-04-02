@@ -16,15 +16,15 @@
 		searchField
 	} from '$lib/store/search';
 	import { downloadTypes, searchFields } from '$lib/store/constants';
-	import type { IDownloadType, ISearchFieldType } from '$lib/store/types';
+	import type { IDownloadType, ISearchField } from '$lib/store/types';
 
 	export let isFilterOpen = false;
 
 	let selectedDownloadType: IDownloadType;
-	let selectedViewResults: boolean;
+	let selectedViewResults: string;
 	let resPerPage: number;
 	let srchWithMask: boolean;
-	let selectedSearchField: ISearchFieldType;
+	let selectedSearchField: ISearchField;
 
 	downloadType.subscribe((value) => {
 		selectedDownloadType = value;

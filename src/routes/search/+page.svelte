@@ -9,11 +9,10 @@
 
 <svelte:head>
 	<title>Library Genesis</title>
-	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
 <section class="flex-1 flex flex-col items-center justify-center my-32">
-	<h1 class="text-4xl text-left w-4/5">Search results for: Minecraft</h1>
+	<h1 class="text-4xl text-left w-4/5">Search results for: {data.query}</h1>
 	<p class="text-left w-4/5 mb-8 mt-2">{data.resultsCount}</p>
 	<div class="w-4/5">
 		<SearchBox bind:isFilterOpen />

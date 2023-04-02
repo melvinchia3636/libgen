@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Icon from '@iconify/svelte';
 	import {
 		Listbox,
@@ -7,7 +7,15 @@
 		ListboxOption,
 		Transition
 	} from '@rgossiaux/svelte-headlessui';
-	import { query } from '$lib/store/search';
+	import {
+		query,
+		downloadType,
+		viewResults,
+		resultsCount,
+		searchWithMask,
+		searchField
+	} from '$lib/store/search';
+	import { goto } from '$app/navigation';
 
 	const categories = [
 		{ id: 1, name: 'Non-fiction / Sci-tech' },
@@ -18,6 +26,17 @@
 
 	let selectedCategory = categories[0];
 	export let isFilterOpen = false;
+
+	function onSubmit(e: Event) {
+		e.preventDefault();
+		goto(
+			`/search?req=${$query}&lg_topic=libgen&open=${
+				$downloadType.id
+			}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
+				$searchWithMask
+			)}`
+		);
+	}
 </script>
 
 <div class="flex gap-2">
@@ -64,7 +83,6 @@
 			class="w-full p-2 pl-0 rounded-md bg-transparent placeholder-slate-400 font-light focus:outline-none"
 			placeholder="Search..."
 			bind:value={$query}
-			on:input={() => ($query = $query.trim())}
 		/>
 		<button on:click={() => (isFilterOpen = !isFilterOpen)}>
 			<Icon
@@ -73,5 +91,7 @@
 			/>
 		</button>
 	</div>
-	<button class="bg-orange-500 text-[#f6f8fa] px-6 rounded-md shadow-md"> Search </button>
+	<button on:click={onSubmit} class="bg-orange-500 text-[#f6f8fa] px-6 rounded-md shadow-md">
+		Search
+	</button>
 </div>

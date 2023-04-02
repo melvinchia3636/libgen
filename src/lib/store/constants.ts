@@ -1,13 +1,13 @@
-import type { IDownloadTypes } from './types';
+import type { IDownloadTypes, ISearchFields } from './types';
 
 export const downloadTypes: IDownloadTypes = [
-	{ id: 1, name: 'Resumed dl with original filename' },
-	{ id: 2, name: 'Resumed dl with transit filename' },
-	{ id: 3, name: 'Resumed dl with md5 filename' },
-	{ id: 4, name: 'Open file in browser' }
+	{ id: 0, name: 'Resumed dl with original filename' },
+	{ id: 1, name: 'Resumed dl with transit filename' },
+	{ id: 2, name: 'Resumed dl with md5 filename' },
+	{ id: 3, name: 'Open file in browser' }
 ];
 
-export const searchFields: ISearchFieldType = [
+export const searchFields: ISearchFields = [
 	{ id: 'def', name: 'Default' },
 	{ id: 'title', name: 'Title' },
 	{ id: 'author', name: 'Author(s)' },

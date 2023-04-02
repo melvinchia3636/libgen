@@ -5,9 +5,9 @@ export type IDownloadType = {
 
 export type IDownloadTypes = IDownloadType[];
 
-export type ISearchFieldType = {
-	id: number;
+export type ISearchField = {
+	id: string;
 	name: string;
 };
 
-export type ISearchFieldTypes = ISearchFieldType[];
+export type ISearchFields = ISearchField[];

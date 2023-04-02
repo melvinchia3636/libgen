@@ -1,6 +1,7 @@
 <script>
 	import SearchBox from '$lib/components/search/SearchBox.svelte';
 	import SearchFilter from '$lib/components/search/SearchFilter.svelte';
+	import { onMount } from 'svelte';
 
 	let isFilterOpen = false;
 </script>
