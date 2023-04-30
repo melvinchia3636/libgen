@@ -1,10 +1,16 @@
-<script>
+<script lang="ts">
 	import SearchBox from '$lib/components/search/SearchBox.svelte';
 	import SearchFilter from '$lib/components/search/SearchFilter.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
 
 	let isFilterOpen = false;
+	let urlParams: URLSearchParams | undefined;
+
+	onMount(() => {
+		urlParams = new URLSearchParams(window.location.search);
+	});
 </script>
 
 <svelte:head>
@@ -18,30 +24,40 @@
 		<SearchBox bind:isFilterOpen />
 		<SearchFilter bind:isFilterOpen />
 	</div>
-	<table class="w-4/5">
-		<thead class="border-b border-slate-300">
-			<tr>
-				<th class="p-4 text-left">Title</th>
-				<th class="p-4 text-left">Author</th>
-				<th class="p-4 text-left">Year</th>
-				<th class="p-4 text-left">Pages</th>
-				<th class="p-4 text-left">Language</th>
-				<th class="p-4 text-left">Size</th>
-				<th class="p-4 text-left">Extension</th>
-			</tr>
-		</thead>
-		<tbody>
-			{#each data.data as book}
-				<tr class="border-b border-slate-300 odd:bg-slate-300/30">
-					<td class="p-4">{book.title}</td>
-					<td class="p-4 font-light">{book.author}</td>
-					<td class="p-4 font-light">{book.year}</td>
-					<td class="p-4 font-light">{book.pages}</td>
-					<td class="p-4 font-light">{book.language}</td>
-					<td class="whitespace-nowrap p-4 font-light">{book.size}</td>
-					<td class="p-4 font-light">{book.extension}</td>
+	{#if urlParams?.get('view') !== 'detailed'}
+		<table class="w-4/5">
+			<thead class="border-b border-slate-300 !font-light">
+				<tr>
+					<th class="p-4 text-left">Title</th>
+					<th class="p-4 text-left">Author</th>
+					<th class="p-4 text-left">Year</th>
+					<th class="p-4 text-left">Pages</th>
+					<th class="p-4 text-left">Language</th>
+					<th class="p-4 text-left">Size</th>
+					<th class="p-4 text-left">Extension</th>
 				</tr>
+			</thead>
+			<tbody>
+				{#each data.data as book}
+					<tr class="border-b border-slate-300 odd:bg-slate-300/30">
+						<td class="p-4">{book.title}</td>
+						<td class="p-4 font-light">{book.author}</td>
+						<td class="p-4 font-light">{book.year}</td>
+						<td class="p-4 font-light">{book.pages}</td>
+						<td class="p-4 font-light">{book.language}</td>
+						<td class="whitespace-nowrap p-4 font-light">{book.size}</td>
+						<td class="p-4 font-light">{book.extension}</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
+	{:else}
+		<div class="w-4/5 flex flex-col gap-4">
+			{#each data.data as book}
+				<div class="flex px-8">
+					<img src="http://libgen.is{book.image}" class="w-64" referrerpolicy="no-referrer" />
+				</div>
 			{/each}
-		</tbody>
-	</table>
+		</div>
+	{/if}
 </section>

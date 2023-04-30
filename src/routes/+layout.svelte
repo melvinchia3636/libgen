@@ -11,6 +11,8 @@
 	import { onMount } from 'svelte';
 	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
+	import { navigating } from '$app/stores';
+	import Icon from '@iconify/svelte';
 
 	onMount(() => {
 		const rawSearchParams = location.search;
@@ -42,7 +44,13 @@
 	<Header />
 
 	<main class="flex-1 flex flex-col w-full">
-		<slot />
+		{#if $navigating}
+			<div class="flex-1 flex items-center justify-center">
+				<Icon icon="svg-spinners:90-ring" class="w-10 h-10 text-slate-700" />
+			</div>
+		{:else}
+			<slot />
+		{/if}
 	</main>
 
 	<footer

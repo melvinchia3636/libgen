@@ -4,13 +4,23 @@
 	import DropDownButton from '$lib/components/navbar/DropDownButton.svelte';
 	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
+	import { navigating } from '$app/stores';
 
-	onMount(() => {
+	const updateNavbar = () => {
 		const arrow = document.querySelector('.arrow')! as HTMLElement;
+		const middle = document.querySelector('.middle')! as HTMLElement;
 		const currentPage =
-			(document.querySelector(`nav > ul > li[aria-current="page"]`) as HTMLElement) ||
-			document.createElement('li');
+			(document.querySelector(`nav > ul > li[aria-current="page"]`) as HTMLElement) || middle;
 		arrow.style.left = `${currentPage.offsetLeft + currentPage.offsetWidth / 2 - 6}px`;
+
+		Array.from(
+			document.querySelectorAll('nav > ul > li') as any as HTMLCollectionOf<HTMLElement>
+		).forEach((li) => {
+			if (li.querySelector('a')) {
+				li.querySelector('a').style.fontWeight = '300';
+			}
+		});
+
 		if (currentPage.querySelector('a')) currentPage.querySelector('a')!.style.fontWeight = '500';
 
 		Array.from(
@@ -32,6 +42,14 @@
 			arrow.style.left = `${currentPage.offsetLeft + currentPage.offsetWidth / 2 - 6}px`;
 			if (currentPage.querySelector('a')) currentPage.querySelector('a')!.style.fontWeight = '500';
 		});
+	};
+
+	onMount(() => {
+		updateNavbar();
+
+		navigating.subscribe(() => {
+			updateNavbar();
+		});
 	});
 </script>
 
@@ -44,7 +62,7 @@
 	>
 		<li
 			aria-current={$page.url.pathname === '/' ? 'page' : undefined}
-			class="relative h-full flex items-center justify-center font-medium"
+			class="relative h-full flex items-center justify-center"
 		>
 			<a href="/">Home</a>
 		</li>
@@ -171,6 +189,7 @@
 				<DropDownButton>Magazines</DropDownButton>
 			</ul>
 		</li>
+		<li class="middle absolute left-1/2 -translate-x-1/2" />
 		<span class="arrow" />
 	</ul>
 	<svg viewBox="0 0 2 3" aria-hidden="true" class="-translate-x-[1px]">

@@ -16,6 +16,7 @@
 		searchField
 	} from '$lib/store/search';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	const categories = [
 		{ id: 1, name: 'Non-fiction / Sci-tech' },
@@ -29,14 +30,20 @@
 
 	function onSubmit(e: Event) {
 		e.preventDefault();
-		goto(
-			`/search?req=${$query}&lg_topic=libgen&open=${
-				$downloadType.id
-			}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
-				$searchWithMask
-			)}`
-		);
+		if ($query) {
+			goto(
+				`/search?req=${$query}&lg_topic=libgen&open=${
+					$downloadType.id
+				}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
+					$searchWithMask
+				)}`
+			);
+		}
 	}
+
+	onMount(() => {
+		document.getElementById('search-input')!.focus();
+	});
 </script>
 
 <div class="flex gap-2">
@@ -80,8 +87,9 @@
 		<div class="w-0 h-8 border-r-[1.5px] border-slate-300" />
 		<input
 			type="text"
-			class="w-full p-2 pl-0 rounded-md bg-transparent placeholder-slate-400 font-light focus:outline-none"
+			class="w-full p-2 pl-0 rounded-md bg-transparent placeholder-slate-400 font-light focus:outline-none caret-orange-500"
 			placeholder="Search..."
+			id="search-input"
 			bind:value={$query}
 		/>
 		<button on:click={() => (isFilterOpen = !isFilterOpen)}>

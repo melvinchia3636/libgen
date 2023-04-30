@@ -11,7 +11,7 @@
 	</a>
 
 	<Navbar />
-	<a href="https://github.com/sveltejs/kit">
+	<a href="https://github.com/melvinchia3636/libgen" target="_blank">
 		<Icon icon="mdi:github" class="w-7 h-7 text-slate-700 flex-shrink-0 m-4" />
 	</a>
 </header>
