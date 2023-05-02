@@ -48,15 +48,15 @@
 </script>
 
 <div
-	class="bg-[#f6f8fa] w-full rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
+	class="bg-zinc-700 w-full rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
 		? 'max-h-[30rem] py-2'
 		: 'max-h-0 py-0'}"
 >
-	<ul class="flex flex-col divide-y divide-slate-200">
+	<ul class="flex flex-col divide-y divide-slate-200 dark:divide-zinc-600">
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Download type</h2>
-				<p class="text-slate-400 text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
 					Select the type of download you want to perform.
 				</p>
 			</div>
@@ -66,10 +66,10 @@
 				class="relative"
 			>
 				<ListboxButton
-					class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 rounded-md"
+					class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 dark:border-zinc-500 rounded-md"
 				>
 					{selectedDownloadType.name}
-					<Icon icon="uil:angle-down" class="text-slate-700 w-5 h-5" />
+					<Icon icon="uil:angle-down" class="text-slate-700 dark:text-zinc-500 w-5 h-5" />
 				</ListboxButton>
 				<Transition
 					enter="transition-opacity duration-75"
@@ -78,15 +78,17 @@
 					leave="transition-opacity duration-150"
 					leaveFrom="opacity-100"
 					leaveTo="opacity-0"
-					class="absolute top-8 right-0 z-[9999]"
+					class="absolute top-12 right-0 z-[9999]"
 				>
-					<ListboxOptions class="bg-[#f6f8fa] rounded-md shadow-md overflow-hidden w-80">
+					<ListboxOptions
+						class="bg-white dark:bg-zinc-600 rounded-md shadow-md overflow-hidden w-80"
+					>
 						{#each downloadTypes as downloadType, idx (downloadType.id)}
-							<div class="px-2 hover:bg-slate-200/50 cursor-pointer">
+							<div class="px-2 hover:bg-slate-200/50 dark:hover:bg-zinc-500 cursor-pointer">
 								<ListboxOption
 									value={downloadType}
 									class={({ selected }) =>
-										'px-2 py-3 border-slate-200 flex items-center gap-2 justify-between' +
+										'px-2 py-3 border-slate-200 dark:border-zinc-500 flex items-center gap-2 justify-between' +
 										(selected ? ' font-medium' : ' font-light') +
 										(idx === downloadTypes.length - 1 ? ' border-b-0' : ' border-b')}
 									let:selected
@@ -105,14 +107,14 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>View results</h2>
-				<p class="text-slate-400 text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
 					Select whether to show results in more detail or not.
 				</p>
 			</div>
 			<div class="w-80 flex items-center gap-12">
 				<div class="block min-h-[1.5rem] pl-[1.5rem]">
 					<input
-						class="relative float-left mt-[0.2rem] mr-1 -ml-[1.5rem] h-[1.2rem] w-[1.2rem] appearance-none rounded-full border-2 border-solid border-slate-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-orange-500 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-orange-500 checked:after:bg-orange-500 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 checked:focus:border-orange-500 checked:focus:before:scale-100 checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-slate-600 dark:checked:border-orange-500 dark:checked:after:border-orange-500 dark:checked:after:bg-orange-500 dark:checked:focus:border-orange-500"
+						class="relative float-left mt-[0.2rem] mr-1 -ml-[1.5rem] h-[1.2rem] w-[1.2rem] appearance-none rounded-full border-2 border-solid border-slate-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-orange-500 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-orange-500 checked:after:bg-orange-500 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 checked:focus:border-orange-500 checked:focus:before:scale-100 checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-zinc-500 dark:checked:border-orange-500 dark:checked:after:border-orange-500 dark:checked:after:bg-orange-500 dark:checked:focus:border-orange-500"
 						type="radio"
 						name="flexRadioDefault"
 						id="radioDefault01"
@@ -125,7 +127,7 @@
 				</div>
 				<div class="block min-h-[1.5rem] pl-[1.5rem]">
 					<input
-						class="relative float-left mt-[0.2rem] mr-1 -ml-[1.5rem] h-[1.2rem] w-[1.2rem] appearance-none rounded-full border-2 border-solid border-slate-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-orange-500 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-orange-500 checked:after:bg-orange-500 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 checked:focus:border-orange-500 checked:focus:before:scale-100 checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-slate-600 dark:checked:border-orange-500 dark:checked:after:border-orange-500 dark:checked:after:bg-orange-500 dark:checked:focus:border-orange-500"
+						class="relative float-left mt-[0.2rem] mr-1 -ml-[1.5rem] h-[1.2rem] w-[1.2rem] appearance-none rounded-full border-2 border-solid border-slate-300 before:pointer-events-none before:absolute before:h-4 before:w-4 before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:content-[''] after:absolute after:z-[1] after:block after:h-4 after:w-4 after:rounded-full after:content-[''] checked:border-orange-500 checked:before:opacity-[0.16] checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:h-[0.625rem] checked:after:w-[0.625rem] checked:after:rounded-full checked:after:border-orange-500 checked:after:bg-orange-500 checked:after:content-[''] checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer hover:before:opacity-[0.04] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 checked:focus:border-orange-500 checked:focus:before:scale-100 checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:border-zinc-500 dark:checked:border-orange-500 dark:checked:after:border-orange-500 dark:checked:after:bg-orange-500 dark:checked:focus:border-orange-500"
 						type="radio"
 						name="flexRadioDefault"
 						id="radioDefault02"
@@ -140,14 +142,14 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Results per page</h2>
-				<p class="text-slate-400 text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
 					Select how many results to show on each page.
 				</p>
 			</div>
 			<div class="flex items-center justify-start w-80 gap-10">
 				{#each [25, 50, 100] as number}
 					<button
-						class={resPerPage === number ? 'font-semibold text-orange-500' : ''}
+						class={resPerPage === number ? 'font-semibold text-orange-500' : 'dark:text-zinc-500'}
 						on:click={() => resultsCount.set(number)}
 					>
 						{number}
@@ -158,7 +160,7 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Search with mask (word*)</h2>
-				<p class="text-slate-400 text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
 					Select whether to perform wildcard searches or not.
 				</p>
 			</div>
@@ -175,7 +177,9 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Search field</h2>
-				<p class="text-slate-400 text-sm font-light">Select which fields to search in.</p>
+				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
+					Select which fields to search in.
+				</p>
 			</div>
 			<Listbox
 				value={selectedSearchField}
@@ -183,10 +187,10 @@
 				class="relative"
 			>
 				<ListboxButton
-					class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 rounded-md"
+					class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-slate-200 dark:border-zinc-500 rounded-md"
 				>
 					{selectedSearchField.name}
-					<Icon icon="uil:angle-down" class="text-slate-700 w-5 h-5" />
+					<Icon icon="uil:angle-down" class="text-slate-700 dark:text-zinc-500 w-5 h-5" />
 				</ListboxButton>
 				<Transition
 					enter="transition-opacity duration-75"
@@ -195,17 +199,17 @@
 					leave="transition-opacity duration-150"
 					leaveFrom="opacity-100"
 					leaveTo="opacity-0"
-					class="absolute bottom-8 right-0 z-[9999]"
+					class="absolute bottom-12 right-0 z-[9999]"
 				>
 					<ListboxOptions
-						class="bg-[#f6f8fa] rounded-md shadow-md w-80 h-72 overflow-scroll border border-slate-200"
+						class="bg-white dark:bg-zinc-600 rounded-md shadow-md w-80 h-72 overflow-scroll"
 					>
 						{#each searchFields as searchField, idx (searchField.id)}
-							<div class="px-2 hover:bg-slate-200/50 cursor-pointer">
+							<div class="px-2 hover:bg-slate-200/50 dark:hover:bg-zinc-500 cursor-pointer">
 								<ListboxOption
 									value={searchField}
 									class={({ selected }) =>
-										'px-2 py-3 border-slate-200 flex items-center gap-2 justify-between' +
+										'px-2 py-3 border-slate-200 dark:border-zinc-500 flex items-center gap-2 justify-between' +
 										(selected ? ' font-medium' : ' font-light') +
 										(idx === searchFields.length - 1 ? ' border-b-0' : ' border-b')}
 									let:selected
@@ -242,6 +246,10 @@
 
 	:global(.switch-disabled) {
 		background-color: rgb(226 232 240) !important;
+	}
+
+	:global(.dark .switch-disabled) {
+		background-color: rgb(82 82 91) !important;
 	}
 
 	.toggle {

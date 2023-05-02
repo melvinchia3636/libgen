@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Icon from '@iconify/svelte';
 	import Navbar from './navbar/Navbar.svelte';
+	import ThemeToggleButton from './navbar/ThemeToggleButton/index.svelte';
 </script>
 
 <header class="fixed top-0 w-full z-[9999]">
@@ -11,9 +12,15 @@
 	</a>
 
 	<Navbar />
-	<a href="https://github.com/melvinchia3636/libgen" target="_blank">
-		<Icon icon="mdi:github" class="w-7 h-7 text-slate-700 flex-shrink-0 m-4" />
-	</a>
+	<div class="flex items-center gap-4">
+		<ThemeToggleButton />
+		<a href="https://github.com/melvinchia3636/libgen" target="_blank">
+			<Icon
+				icon="mdi:github"
+				class="w-7 h-7 text-slate-700 dark:text-white flex-shrink-0 m-4 ml-0"
+			/>
+		</a>
+	</div>
 </header>
 
 <style>

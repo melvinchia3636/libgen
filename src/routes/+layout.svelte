@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { downloadTypes, searchFields } from '$lib/store/constants';
 	import {
 		downloadType,
@@ -8,11 +8,12 @@
 		searchWithMask,
 		viewResults
 	} from '$lib/store/search';
+	import { theme } from '$lib/store/theme';
 	import { onMount } from 'svelte';
 	import Header from '../lib/components/Header.svelte';
 	import './styles.css';
-	import { navigating } from '$app/stores';
 	import Icon from '@iconify/svelte';
+	import { navigating } from '$app/stores';
 
 	onMount(() => {
 		const rawSearchParams = location.search;
@@ -37,10 +38,25 @@
 				searchFields.find((field) => field.id === searchParams.get('column')) || searchFields[0]
 			);
 		}
+
+		theme.set((localStorage.getItem('theme') as 'light' | 'dark') ?? 'light');
+
+		theme.subscribe((value) => {
+			if (value === 'dark') {
+				document.querySelector('html')!.classList.add('dark');
+			} else {
+				document.querySelector('html')!.classList.remove('dark');
+			}
+
+			localStorage.setItem('theme', value);
+		});
 	});
 </script>
 
-<div class="app bg-slate-200 w-full min-h-screen text-slate-700 flex flex-col" data-theme="light">
+<div
+	class="app bg-slate-200 dark:bg-zinc-800 w-full min-h-screen text-slate-700 dark:text-white flex flex-col"
+	data-theme="light"
+>
 	<Header />
 
 	<main class="flex-1 flex flex-col w-full">
@@ -62,5 +78,8 @@
 	</footer>
 </div>
 
-<style>
+<style global>
+	* {
+		@apply transition-colors duration-500;
+	}
 </style>

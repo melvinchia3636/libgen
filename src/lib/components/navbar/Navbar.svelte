@@ -55,10 +55,10 @@
 
 <nav class="drop-shadow-md absolute top-0 left-1/2 -translate-x-1/2">
 	<svg viewBox="0 0 2 3" aria-hidden="true" class="translate-x-[1px]">
-		<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
+		<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" class="fill-white dark:fill-zinc-700" />
 	</svg>
 	<ul
-		class="flex items-center gap-12 px-6 bg-[#f6f8fa] uppercase font-light tracking-widest text-sm"
+		class="flex items-center gap-12 px-6 bg-white dark:bg-zinc-700 uppercase font-light tracking-widest text-sm"
 	>
 		<li
 			aria-current={$page.url.pathname === '/' ? 'page' : undefined}
@@ -77,10 +77,10 @@
 			</a>
 			<ul
 				id="menu"
-				class="bg-white p-4 grid grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+				class="bg-white dark:bg-zinc-700 p-4 grid grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
 				{#each Object.keys(topics) as topic}
-					<li class="rounded-sm relative px-6 py-4 hover:bg-gray-100 group">
+					<li class="rounded-md relative px-6 py-4 hover:bg-gray-100 dark:hover:bg-zinc-600 group">
 						<button
 							aria-haspopup="true"
 							aria-controls="menu-lang"
@@ -90,10 +90,12 @@
 							<Icon icon="mdi:chevron-right" class="w-4 h-4" />
 						</button>
 						<ul
-							class="subcategory max-h-96 overflow-scroll p-4 shadow-md z-[9999] bg-white rounded-md absolute top-0 right-2 origin-top-left"
+							class="subcategory max-h-96 overflow-scroll p-4 shadow-md z-[9999] bg-white dark:bg-zinc-700 rounded-md absolute top-0 right-2 origin-top-left"
 						>
 							{#each topics[topic] as subtopic}
-								<li class="rounded-sm relative px-6 py-4 hover:bg-gray-100 hover:font-medium">
+								<li
+									class="rounded-md relative px-6 py-4 hover:bg-gray-100 dark:hover:bg-zinc-600 hover:font-medium"
+								>
 									<a href="/">{subtopic}</a>
 								</li>
 							{/each}
@@ -113,7 +115,7 @@
 			</a>
 			<ul
 				id="menu"
-				class="bg-white overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+				class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
 				<DropDownButton>Sitemap</DropDownButton>
 				<DropDownButton>Report an error</DropDownButton>
@@ -130,7 +132,7 @@
 			</a>
 			<ul
 				id="menu"
-				class="bg-white overflow-hidden flex gap-4 rounded-md p-6 transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+				class="bg-white dark:bg-zinc-700 overflow-hidden flex gap-4 rounded-md p-6 transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
 				<div class="flex flex-col">
 					<header class="flex flex-col">
@@ -163,7 +165,7 @@
 			</a>
 			<ul
 				id="menu"
-				class="bg-white overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+				class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
 				<DropDownButton>last added</DropDownButton>
 				<DropDownButton>last modified</DropDownButton>
@@ -182,7 +184,7 @@
 			</a>
 			<ul
 				id="menu"
-				class="bg-white overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+				class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
 				<DropDownButton>Fictions</DropDownButton>
 				<DropDownButton>Scientific articles</DropDownButton>
@@ -193,7 +195,7 @@
 		<span class="arrow" />
 	</ul>
 	<svg viewBox="0 0 2 3" aria-hidden="true" class="-translate-x-[1px]">
-		<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
+		<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" class="fill-white dark:fill-zinc-700" />
 	</svg>
 </nav>
 
@@ -208,10 +210,6 @@
 		width: 2em;
 		height: 3em;
 		display: block;
-	}
-
-	path {
-		fill: var(--background);
 	}
 
 	.arrow {

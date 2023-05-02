@@ -54,8 +54,12 @@
 	{:else}
 		<div class="w-4/5 flex flex-col gap-4">
 			{#each data.data as book}
-				<div class="flex px-8">
+				<div class="flex p-8 gap-4 bg-white rounded-md shadow-md">
 					<img src="http://libgen.is{book.image}" class="w-64" referrerpolicy="no-referrer" />
+					<div>
+						<h2 class="text-2xl">{book.title}</h2>
+						<p class="font-light">{book.author}</p>
+					</div>
 				</div>
 			{/each}
 		</div>
