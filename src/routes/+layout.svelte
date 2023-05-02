@@ -62,7 +62,7 @@
 	<main class="flex-1 flex flex-col w-full">
 		{#if $navigating}
 			<div class="flex-1 flex items-center justify-center">
-				<Icon icon="svg-spinners:90-ring" class="w-10 h-10 text-slate-700" />
+				<Icon icon="svg-spinners:90-ring" class="w-10 h-10 text-slate-700 dark:text-orange-500" />
 			</div>
 		{:else}
 			<slot />

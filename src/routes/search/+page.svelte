@@ -39,7 +39,7 @@
 			</thead>
 			<tbody>
 				{#each data.data as book}
-					<tr class="border-b border-slate-300 odd:bg-slate-300/30">
+					<tr class="border-b border-slate-300 odd:bg-slate-300/30 dark:odd:bg-zinc-700/50">
 						<td class="p-4">{book.title}</td>
 						<td class="p-4 font-light">{book.author}</td>
 						<td class="p-4 font-light">{book.year}</td>
