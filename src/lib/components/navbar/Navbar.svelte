@@ -139,18 +139,28 @@
 						<h3 class="text-base font-medium pb-3 px-4">Mirrors</h3>
 						<div class="w-full border-b border-slate-200" />
 					</header>
-					<a class="p-4 hover:bg-slate-100 rounded-md">Libgen.rs (ex Gen.lib.rus.ec)</a>
-					<a class="p-4 hover:bg-slate-100 rounded-md">Tor mirror (files only)</a>
-					<a class="p-4 hover:bg-slate-100 rounded-md">Libgen.lc</a>
+					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
+						>Libgen.rs (ex Gen.lib.rus.ec)</a
+					>
+					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
+						>Tor mirror (files only)</a
+					>
+					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md">Libgen.lc</a>
 				</div>
 				<div class="flex flex-col">
 					<header class="flex flex-col">
 						<h3 class="text-base font-medium pb-3 px-4">Public datasets</h3>
 						<div class="w-full border-b border-slate-200" />
 					</header>
-					<a class="p-4 hover:bg-slate-100 rounded-md">Database dumps (library's catalogue)</a>
-					<a class="p-4 hover:bg-slate-100 rounded-md">Torrents (library's content)</a>
-					<a class="p-4 hover:bg-slate-100 rounded-md">Torrent health tracker</a>
+					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
+						>Database dumps (library's catalogue)</a
+					>
+					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
+						>Torrents (library's content)</a
+					>
+					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
+						>Torrent health tracker</a
+					>
 				</div>
 			</ul>
 		</li>

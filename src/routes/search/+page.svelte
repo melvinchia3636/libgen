@@ -24,9 +24,14 @@
 		<SearchBox bind:isFilterOpen />
 		<SearchFilter bind:isFilterOpen />
 	</div>
-	{#if urlParams?.get('view') !== 'detailed'}
+	{#if data.data.length === 0}
+		<div class="w-4/5 flex flex-col items-center justify-center gap-4 mt-6">
+			<span class="text-orange-500 text-[10rem]">;-;</span>
+			<p class="text-xl">No results found</p>
+		</div>
+	{:else if urlParams?.get('view') !== 'detailed'}
 		<table class="w-4/5">
-			<thead class="border-b border-slate-300 !font-light">
+			<thead class="border-b border-slate-300 dark:border-zinc-600 !font-light">
 				<tr>
 					<th class="p-4 text-left">Title</th>
 					<th class="p-4 text-left">Author</th>
@@ -39,7 +44,9 @@
 			</thead>
 			<tbody>
 				{#each data.data as book}
-					<tr class="border-b border-slate-300 odd:bg-slate-300/30 dark:odd:bg-zinc-700/50">
+					<tr
+						class="border-b border-slate-300 dark:border-zinc-600 odd:bg-slate-300/30 dark:odd:bg-zinc-700/50"
+					>
 						<td class="p-4">{book.title}</td>
 						<td class="p-4 font-light">{book.author}</td>
 						<td class="p-4 font-light">{book.year}</td>
@@ -54,11 +61,25 @@
 	{:else}
 		<div class="w-4/5 flex flex-col gap-4">
 			{#each data.data as book}
-				<div class="flex p-8 gap-4 bg-white rounded-md shadow-md">
-					<img src="http://libgen.is{book.image}" class="w-64" referrerpolicy="no-referrer" />
-					<div>
+				<div class="flex p-8 gap-8 bg-white dark:bg-zinc-700/50 rounded-md shadow-md items-center">
+					<img
+						src="http://libgen.is{book.image}"
+						class="w-64 h-full object-contain"
+						referrerpolicy="no-referrer"
+					/>
+					<div class="w-full">
 						<h2 class="text-2xl">{book.title}</h2>
-						<p class="font-light">{book.author}</p>
+						<p class="font-light text-orange-500 mt-1">{book.author}</p>
+						<div class="grid grid-cols-[repeat(auto-fit,minmax(33%,1fr))] w-full gap-y-4 mt-6">
+							{#each Object.entries(book) as [key, value]}
+								{#if value && key !== 'image' && key !== 'title' && key !== 'author'}
+									<div class="flex flex-col gap-1">
+										<p class="font-light text-sm text-zinc-400">{key}</p>
+										<p class="font-light">{value}</p>
+									</div>
+								{/if}
+							{/each}
+						</div>
 					</div>
 				</div>
 			{/each}

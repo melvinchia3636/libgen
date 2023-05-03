@@ -48,7 +48,7 @@
 </script>
 
 <div
-	class="bg-zinc-700 w-full rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
+	class="bg-zinc-700 w-full rounded-md px-4 my-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
 		? 'max-h-[30rem] py-2'
 		: 'max-h-0 py-0'}"
 >
@@ -118,7 +118,7 @@
 						type="radio"
 						name="flexRadioDefault"
 						id="radioDefault01"
-						checked
+						checked={$viewResults === 'simple'}
 						on:click={() => viewResults.set('simple')}
 					/>
 					<label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault01">
@@ -131,6 +131,7 @@
 						type="radio"
 						name="flexRadioDefault"
 						id="radioDefault02"
+						checked={$viewResults === 'detailed'}
 						on:click={() => viewResults.set('detailed')}
 					/>
 					<label class="mt-px inline-block pl-[0.15rem] hover:cursor-pointer" for="radioDefault02">
