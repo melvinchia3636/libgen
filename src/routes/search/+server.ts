@@ -31,6 +31,7 @@ export async function POST(hmm: RequestEvent) {
 	target.searchParams.set('view', params.view);
 	target.searchParams.set('res', params.res);
 	target.searchParams.set('column', params.column);
+	target.searchParams.set('page', params.page);
 
 	try {
 		const { data } = await axios.get(target.toString());
@@ -99,7 +100,8 @@ export async function POST(hmm: RequestEvent) {
 			JSON.stringify({
 				query: params.req,
 				resultsCount: document.querySelector("font[color='grey']")?.textContent,
-				data: final
+				data: final,
+				page: parseInt(params.page)
 			})
 		);
 	} catch {
@@ -107,7 +109,8 @@ export async function POST(hmm: RequestEvent) {
 			JSON.stringify({
 				query: params.req,
 				resultsCount: '0',
-				data: []
+				data: [],
+				page: parseInt(params.page)
 			})
 		);
 	}

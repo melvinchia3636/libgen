@@ -19,7 +19,8 @@ export async function load({ fetch, url }: LoadEvent) {
 			view: searchParams.get('view') || 'simple',
 			res: searchParams.get('res') || '25',
 			column: searchParams.get('column') || 'def',
-			phrase: searchParams.get('phrase') || '0'
+			phrase: searchParams.get('phrase') || '0',
+			page: searchParams.get('page') || '1'
 		})
 	});
 	const _data = await response.json();

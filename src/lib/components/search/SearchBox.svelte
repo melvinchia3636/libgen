@@ -31,13 +31,26 @@
 	function onSubmit(e: Event) {
 		e.preventDefault();
 		if ($query) {
-			goto(
-				`/search?req=${$query}&lg_topic=libgen&open=${
-					$downloadType.id
-				}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
-					$searchWithMask
-				)}`
-			);
+			switch (selectedCategory.id) {
+				case 1:
+					goto(
+						`/search?req=${$query}&lg_topic=libgen&open=${
+							$downloadType.id
+						}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
+							$searchWithMask
+						)}`
+					);
+					break;
+				case 2:
+					goto(`https://libgen.is/fiction/?q=${$query}`);
+					break;
+				case 3:
+					goto(`https://libgen.is/scimag/?q=${$query}`);
+					break;
+				case 4:
+					goto(`https://magzdb.org/makelist?t=${$query}`);
+					break;
+			}
 		}
 	}
 
@@ -93,6 +106,9 @@
 			placeholder="Search..."
 			id="search-input"
 			bind:value={$query}
+			on:keypress={(e) => {
+				if (e.key === 'Enter') onSubmit(e);
+			}}
 		/>
 		<button on:click={() => (isFilterOpen = !isFilterOpen)}>
 			<Icon

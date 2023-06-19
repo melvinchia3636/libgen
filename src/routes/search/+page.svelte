@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Pagination from '$lib/components/search/Pagination.svelte';
 	import SearchBox from '$lib/components/search/SearchBox.svelte';
 	import SearchFilter from '$lib/components/search/SearchFilter.svelte';
 	import { onMount } from 'svelte';
@@ -7,6 +8,7 @@
 
 	let isFilterOpen = false;
 	let urlParams: URLSearchParams | undefined;
+	let currentPage = data.page;
 
 	onMount(() => {
 		urlParams = new URLSearchParams(window.location.search);
@@ -24,6 +26,7 @@
 		<SearchBox bind:isFilterOpen />
 		<SearchFilter bind:isFilterOpen />
 	</div>
+	<Pagination {data} {currentPage} {urlParams} />
 	{#if data.data.length === 0}
 		<div class="w-4/5 flex flex-col items-center justify-center gap-4 mt-6">
 			<span class="text-orange-500 text-[10rem]">;-;</span>
@@ -35,11 +38,12 @@
 				<tr>
 					<th class="p-4 text-left">Title</th>
 					<th class="p-4 text-left">Author</th>
-					<th class="p-4 text-left">Year</th>
-					<th class="p-4 text-left">Pages</th>
-					<th class="p-4 text-left">Language</th>
-					<th class="p-4 text-left">Size</th>
-					<th class="p-4 text-left">Extension</th>
+					<th class="p-4 text-center">Year</th>
+					<th class="p-4 text-center">Pages</th>
+					<th class="p-4 text-center">Language</th>
+					<th class="p-4 text-center">Size</th>
+					<th class="p-4 text-center">Extension</th>
+					<th class="p-4 text-center">Download</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,23 +53,42 @@
 					>
 						<td class="p-4">{book.title}</td>
 						<td class="p-4 font-light">{book.author}</td>
-						<td class="p-4 font-light">{book.year}</td>
-						<td class="p-4 font-light">{book.pages}</td>
-						<td class="p-4 font-light">{book.language}</td>
-						<td class="whitespace-nowrap p-4 font-light">{book.size}</td>
-						<td class="p-4 font-light">{book.extension}</td>
+						<td class="p-4 font-light text-center">{book.year}</td>
+						<td class="p-4 font-light text-center">{book.pages}</td>
+						<td class="p-4 font-light text-center">{book.language}</td>
+						<td class="whitespace-nowrap p-4 font-light text-center">{book.size}</td>
+						<td class="p-4 font-light text-center">{book.extension}</td>
+						<td class="p-4 font-light text-center">
+							<a
+								href={book.mirror1}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-orange-500 hover:text-orange-600"
+							>
+								Mirror 1
+							</a>
+							<a
+								href={book.mirror2}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="text-orange-500 hover:text-orange-600"
+							>
+								Mirror 2
+							</a>
+						</td>
 					</tr>
 				{/each}
 			</tbody>
 		</table>
 	{:else}
-		<div class="w-4/5 flex flex-col gap-4">
+		<div class="w-4/5 flex flex-col gap-4 mb-2">
 			{#each data.data as book}
-				<div class="flex p-8 gap-8 bg-white dark:bg-zinc-700/50 rounded-md shadow-md items-center">
+				<div class="flex p-8 gap-8 bg-white dark:bg-zinc-700/50 rounded-md shadow-md items-start">
 					<img
 						src="http://libgen.is{book.image}"
 						class="w-64 h-full object-contain"
 						referrerpolicy="no-referrer"
+						alt=""
 					/>
 					<div class="w-full">
 						<h2 class="text-2xl">{book.title}</h2>
@@ -74,7 +97,7 @@
 							{#each Object.entries(book) as [key, value]}
 								{#if value && key !== 'image' && key !== 'title' && key !== 'author'}
 									<div class="flex flex-col gap-1">
-										<p class="font-light text-sm text-zinc-400">{key}</p>
+										<p class="font-light text-zinc-400">{key}</p>
 										<p class="font-light">{value}</p>
 									</div>
 								{/if}
@@ -85,4 +108,5 @@
 			{/each}
 		</div>
 	{/if}
+	<Pagination {data} {currentPage} {urlParams} />
 </section>

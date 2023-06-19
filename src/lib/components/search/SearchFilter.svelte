@@ -48,7 +48,7 @@
 </script>
 
 <div
-	class="bg-zinc-700 w-full rounded-md px-4 my-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
+	class="bg-white dark:bg-zinc-700 w-full rounded-md px-4 my-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
 		? 'max-h-[30rem] py-2'
 		: 'max-h-0 py-0'}"
 >
@@ -56,7 +56,7 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Download type</h2>
-				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 text-sm font-light">
 					Select the type of download you want to perform.
 				</p>
 			</div>
@@ -107,7 +107,7 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>View results</h2>
-				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 text-sm font-light">
 					Select whether to show results in more detail or not.
 				</p>
 			</div>
@@ -143,7 +143,7 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Results per page</h2>
-				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 text-sm font-light">
 					Select how many results to show on each page.
 				</p>
 			</div>
@@ -161,7 +161,7 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Search with mask (word*)</h2>
-				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 text-sm font-light">
 					Select whether to perform wildcard searches or not.
 				</p>
 			</div>
@@ -178,7 +178,7 @@
 		<li class="flex items-center justify-between p-2 py-4">
 			<div>
 				<h2>Search field</h2>
-				<p class="text-slate-400 dark:text-zinc-500 dark:text-zinc-500text-sm font-light">
+				<p class="text-slate-400 dark:text-zinc-500 text-sm font-light">
 					Select which fields to search in.
 				</p>
 			</div>
