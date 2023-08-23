@@ -119,7 +119,10 @@
 			/>
 		</button>
 	</div>
-	<button on:click={onSubmit} class="bg-orange-500 text-[#f6f8fa] px-6 rounded-md shadow-md">
-		Search
+	<button
+		on:click={onSubmit}
+		class="bg-orange-500 text-[#f6f8fa] flex items-center pl-6 pr-5 rounded-md shadow-md"
+	>
+		Search <Icon icon="uil:arrow-right" class="w-6 h-6 ml-1" />
 	</button>
 </div>

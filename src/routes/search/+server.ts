@@ -40,7 +40,6 @@ export async function POST(hmm: RequestEvent) {
 			method: 'GET',
 			url: target.href
 		});
-		fs.writeFileSync('test.html', data);
 		const dom = new JSDOM(data);
 		const document = dom.window.document;
 		let final = [];
