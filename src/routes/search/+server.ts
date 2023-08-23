@@ -3,6 +3,7 @@
 import { JSDOM } from 'jsdom';
 import axios from 'axios';
 import type { RequestEvent } from './$types';
+import fs from 'fs';
 
 const cleanupTitle = (title: Element | null) => {
 	if (title === null) return '';
@@ -25,6 +26,7 @@ export async function POST(hmm: RequestEvent) {
 	const params = await hmm.request.json();
 
 	const target = new URL('http://libgen.is/search.php');
+	target.searchParams.set('mode', params.mode);
 	target.searchParams.set('req', params.req);
 	target.searchParams.set('lg_topic', 'libgen');
 	target.searchParams.set('open', params.open);
@@ -34,7 +36,11 @@ export async function POST(hmm: RequestEvent) {
 	target.searchParams.set('page', params.page);
 
 	try {
-		const { data } = await axios.get(target.toString());
+		const { data } = await axios({
+			method: 'GET',
+			url: target.href
+		});
+		fs.writeFileSync('test.html', data);
 		const dom = new JSDOM(data);
 		const document = dom.window.document;
 		let final = [];
@@ -49,6 +55,9 @@ export async function POST(hmm: RequestEvent) {
 					return {
 						id: cells[0].textContent,
 						author: cells[1].textContent,
+						series: Array.from(cells[2].querySelectorAll('a')).filter((e) =>
+							e.href.includes('&column=series')
+						)?.[0]?.textContent,
 						title: cleanupTitle(cells[2].querySelector('[title]')),
 						publisher: cells[3].textContent,
 						year: cells[4].textContent,
@@ -98,7 +107,12 @@ export async function POST(hmm: RequestEvent) {
 
 		return new Response(
 			JSON.stringify({
-				query: params.req,
+				query: ['last', 'modified'].includes(params.mode)
+					? {
+							last: 'Last added',
+							modified: 'Last modified'
+					  }[params.mode as 'last' | 'modified']
+					: params.req,
 				resultsCount: document.querySelector("font[color='grey']")?.textContent,
 				data: final,
 				page: parseInt(params.page)
@@ -107,7 +121,12 @@ export async function POST(hmm: RequestEvent) {
 	} catch {
 		return new Response(
 			JSON.stringify({
-				query: params.req,
+				query: ['last', 'modified'].includes(params.mode)
+					? {
+							last: 'Last added',
+							modified: 'Last modified'
+					  }[params.mode as 'last' | 'modified']
+					: params.req,
 				resultsCount: '0',
 				data: [],
 				page: parseInt(params.page)

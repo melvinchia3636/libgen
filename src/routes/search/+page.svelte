@@ -27,7 +27,7 @@
 		<SearchFilter bind:isFilterOpen />
 	</div>
 	<Pagination {data} {currentPage} {urlParams} />
-	{#if data.data.length === 0}
+	{#if !data.data || data.data?.length === 0}
 		<div class="w-4/5 flex flex-col items-center justify-center gap-4 mt-6">
 			<span class="text-orange-500 text-[10rem]">;-;</span>
 			<p class="text-xl">No results found</p>
@@ -51,8 +51,30 @@
 					<tr
 						class="border-b border-slate-300 dark:border-zinc-600 odd:bg-slate-300/30 dark:odd:bg-zinc-700/50"
 					>
-						<td class="p-4">{book.title}</td>
-						<td class="p-4 font-light">{book.author}</td>
+						<td class="p-4 flex flex-col gap-1">
+							{#if book.series}
+								<a
+									href="/search?req={encodeURIComponent(book.series)}&column=series"
+									class="text-sm text-orange-500 hover:text-orange-600">{book.series}</a
+								>
+							{/if}
+							{book.title}
+						</td>
+						<td class="p-4 font-light">
+							<span class="flex flex-wrap"
+								>{#each book.author.split(/,|;/) as author, i}
+									<a
+										href="/search?req={encodeURIComponent(author.trim())}&column=author"
+										class="text-orange-500 hover:text-orange-600"
+									>
+										{author.trim()}
+									</a>
+									{#if i < book.author.split(/,|;/).length - 1}
+										,&nbsp;
+									{/if}
+								{/each}</span
+							>
+						</td>
 						<td class="p-4 font-light text-center">{book.year}</td>
 						<td class="p-4 font-light text-center">{book.pages}</td>
 						<td class="p-4 font-light text-center">{book.language}</td>
@@ -98,7 +120,16 @@
 								{#if value && key !== 'image' && key !== 'title' && key !== 'author'}
 									<div class="flex flex-col gap-1">
 										<p class="font-light text-zinc-400">{key}</p>
-										<p class="font-light">{value}</p>
+										<p class="font-light">
+											{#if key == 'series'}
+												<a
+													href="/search?req={encodeURIComponent(value)}&column=series&view=detailed"
+													class="text-orange-500 hover:text-orange-600">{value}</a
+												>
+											{:else}
+												{value}
+											{/if}
+										</p>
 									</div>
 								{/if}
 							{/each}

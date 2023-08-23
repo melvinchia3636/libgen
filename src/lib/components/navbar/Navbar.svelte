@@ -80,24 +80,27 @@
 				class="bg-white dark:bg-zinc-700 p-4 grid grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
 				{#each Object.keys(topics) as topic}
-					<li class="rounded-md relative px-6 py-4 hover:bg-gray-100 dark:hover:bg-zinc-600 group">
-						<button
+					<li class="rounded-md relative group">
+						<a
+							href="/search?req=topicid{topic.split('|')[0]}&column=topic"
 							aria-haspopup="true"
 							aria-controls="menu-lang"
-							class="w-full focus:outline-none rounded-md flex uppercase tracking-widest justify-between items-center gap-2 group-hover:font-medium"
+							class="w-full focus:outline-none px-6 py-4 hover:bg-gray-100 dark:hover:bg-zinc-600 rounded-md flex uppercase tracking-widest justify-between items-center gap-2 group-hover:font-medium"
 						>
-							{topic}
+							{topic.split('|')[1]}
 							<Icon icon="mdi:chevron-right" class="w-4 h-4" />
-						</button>
+						</a>
 						<ul
 							class="subcategory max-h-96 overflow-scroll p-4 shadow-md z-[9999] bg-white dark:bg-zinc-700 rounded-md absolute top-0 right-2 origin-top-left"
 						>
-							{#each topics[topic] as subtopic}
-								<li
-									class="rounded-md relative px-6 py-4 hover:bg-gray-100 dark:hover:bg-zinc-600 hover:font-medium"
-								>
-									<a href="/">{subtopic}</a>
-								</li>
+							{#each Object.entries(topics[topic]) as [id, subtopic]}
+								<a href="/search?req=topicid{id}&column=topic">
+									<li
+										class="rounded-md relative px-6 py-4 hover:bg-gray-100 dark:hover:bg-zinc-600 hover:font-medium"
+									>
+										{subtopic}
+									</li>
+								</a>
 							{/each}
 						</ul>
 					</li>
@@ -117,8 +120,10 @@
 				id="menu"
 				class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
-				<DropDownButton>Sitemap</DropDownButton>
-				<DropDownButton>Report an error</DropDownButton>
+				<DropDownButton href="https://forum.mhut.org/viewtopic.php?p=9000">Sitemap</DropDownButton>
+				<DropDownButton href="https://forum.mhut.org/viewtopic.php?t=6423">
+					Report an error
+				</DropDownButton>
 			</ul>
 		</li>
 		<li
@@ -139,37 +144,40 @@
 						<h3 class="text-base font-medium pb-3 px-4">Mirrors</h3>
 						<div class="w-full border-b border-slate-200" />
 					</header>
-					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
-						>Libgen.rs (ex Gen.lib.rus.ec)</a
+					<DropDownButton inner={true} href="http://libgen.is/">Libgen.is</DropDownButton>
+					<DropDownButton inner={true} href="http://libgen.rs/">Libgen.rs</DropDownButton>
+					<DropDownButton inner={true} href="http://libgen.gs/">Libgen.gs</DropDownButton>
+					<DropDownButton
+						inner={true}
+						href="http://libgenfrialc7tguyjywa36vtrdcplwpxaw43h6o63dmmwhvavo5rqqd.onion/"
 					>
-					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
-						>Tor mirror (files only)</a
-					>
-					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md">Libgen.lc</a>
+						Tor mirror (files only)
+					</DropDownButton>
 				</div>
 				<div class="flex flex-col">
 					<header class="flex flex-col">
 						<h3 class="text-base font-medium pb-3 px-4">Public datasets</h3>
 						<div class="w-full border-b border-slate-200" />
 					</header>
-					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
-						>Database dumps (library's catalogue)</a
-					>
-					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
-						>Torrents (library's content)</a
-					>
-					<a class="p-4 hover:bg-slate-100 dark:hover:bg-zinc-600 rounded-md"
-						>Torrent health tracker</a
-					>
+					<DropDownButton inner={true} href="https://data.library.bz/dbdumps/">
+						Database dumps (library's catalogue)
+					</DropDownButton>
+					<DropDownButton inner={true} href="http://libgen.rs/repository_torrent/">
+						Torrents (library's content)
+					</DropDownButton>
+					<DropDownButton inner={true} href="https://phillm.net/libgen-stats-table.php">
+						Torrent health tracker
+					</DropDownButton>
 				</div>
 			</ul>
 		</li>
 		<li
-			aria-current={$page.url.pathname === '/' ? 'page' : undefined}
+			aria-current={['last', 'modified'].includes($page.url.searchParams.get('mode') || '')
+				? 'page'
+				: undefined}
 			class="relative h-full flex items-center justify-center"
 		>
-			<!-- svelte-ignore a11y-missing-attribute -->
-			<a class="rounded-sm flex items-center [all:inherit] !gap-2">
+			<a href="/search?mode=last" class="rounded-sm flex items-center [all:inherit] !gap-2">
 				latest
 				<Icon icon="mdi:chevron-down" class="w-4 h-4" />
 			</a>
@@ -177,10 +185,10 @@
 				id="menu"
 				class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
-				<DropDownButton>last added</DropDownButton>
-				<DropDownButton>last modified</DropDownButton>
-				<DropDownButton>RSS Feed</DropDownButton>
-				<DropDownButton>API</DropDownButton>
+				<DropDownButton noNewWindow href="/search?mode=last">last added</DropDownButton>
+				<DropDownButton noNewWindow href="/search?mode=modified">last modified</DropDownButton>
+				<DropDownButton href="http://libgen.is/rss/index.php">RSS Feed</DropDownButton>
+				<DropDownButton href="https://libgen.gs/json.php">API</DropDownButton>
 			</ul>
 		</li>
 		<li
@@ -196,9 +204,9 @@
 				id="menu"
 				class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 			>
-				<DropDownButton>Fictions</DropDownButton>
-				<DropDownButton>Scientific articles</DropDownButton>
-				<DropDownButton>Magazines</DropDownButton>
+				<DropDownButton href="https://libgen.is/fiction/?">Fictions</DropDownButton>
+				<DropDownButton href="http://libgen.is/scimag/">Scientific articles</DropDownButton>
+				<DropDownButton href="http://magzdb.org/">Magazines</DropDownButton>
 			</ul>
 		</li>
 		<li class="middle absolute left-1/2 -translate-x-1/2" />

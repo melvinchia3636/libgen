@@ -15,7 +15,7 @@
 	import Icon from '@iconify/svelte';
 	import { navigating } from '$app/stores';
 
-	onMount(() => {
+	function updateStores() {
 		const rawSearchParams = location.search;
 		const searchParams = new URLSearchParams(rawSearchParams);
 		if (searchParams.has('req') && (searchParams.get('req')?.length ?? 0) > 2) {
@@ -38,6 +38,10 @@
 				searchFields.find((field) => field.id === searchParams.get('column')) || searchFields[0]
 			);
 		}
+	}
+
+	onMount(() => {
+		updateStores();
 
 		theme.set((localStorage.getItem('theme') as 'light' | 'dark') ?? 'light');
 
@@ -49,6 +53,10 @@
 			}
 
 			localStorage.setItem('theme', value);
+		});
+
+		navigating.subscribe((value) => {
+			updateStores();
 		});
 	});
 </script>
