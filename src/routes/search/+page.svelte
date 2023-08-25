@@ -37,7 +37,7 @@
 			<thead class="border-b border-slate-300 dark:border-zinc-600 !font-light">
 				<tr>
 					<th class="p-4 text-left">Title</th>
-					<th class="p-4 text-left">Author</th>
+					<th class="p-4 text-left">Author(s)</th>
 					<th class="p-4 text-center">Year</th>
 					<th class="p-4 text-center">Pages</th>
 					<th class="p-4 text-center">Language</th>
@@ -58,22 +58,29 @@
 									class="text-sm text-orange-500 hover:text-orange-600">{book.series}</a
 								>
 							{/if}
-							{book.title}
+							<a href="/book?md5={book.md5}" class="flex flex-col gap-1">
+								{book?.title?.title}
+								{#if book?.title?.edition}
+									<span class="text-sm text-slate-500 dark:text-zinc-500"
+										>{book?.title?.edition}</span
+									>
+								{/if}
+							</a>
 						</td>
 						<td class="p-4 font-light">
 							<span class="flex flex-wrap"
-								>{#each book.author.split(/,|;/) as author, i}
+								>{#each (book.author || '').split(/,|;/) as author, i}
 									<a
 										href="/search?req={encodeURIComponent(author.trim())}&column=author"
 										class="text-orange-500 hover:text-orange-600"
 									>
 										{author.trim()}
 									</a>
-									{#if i < book.author.split(/,|;/).length - 1}
+									{#if i < (book.author?.split(/,|;/) || '')?.length - 1}
 										,&nbsp;
 									{/if}
-								{/each}</span
-							>
+								{/each}
+							</span>
 						</td>
 						<td class="p-4 font-light text-center">{book.year}</td>
 						<td class="p-4 font-light text-center">{book.pages}</td>
@@ -113,11 +120,23 @@
 						alt=""
 					/>
 					<div class="w-full">
-						<h2 class="text-2xl">{book.title}</h2>
-						<p class="font-light text-orange-500 mt-1">{book.author}</p>
+						<a href="/book?md5={book.md5}" class="text-2xl">{book.Title}</a>
+						<p class="font-light flex flex-wrap mt-1">
+							{#each book['Author(s)'].split(/,|;/) as author, i}
+								<a
+									href="/search?req={encodeURIComponent(author.trim())}&column=author"
+									class="text-orange-500 hover:text-orange-600"
+								>
+									{author.trim()}
+								</a>
+								{#if i < book['Author(s)'].split(/,|;/).length - 1}
+									,&nbsp;
+								{/if}
+							{/each}
+						</p>
 						<div class="grid grid-cols-[repeat(auto-fit,minmax(33%,1fr))] w-full gap-y-4 mt-6">
 							{#each Object.entries(book) as [key, value]}
-								{#if value && key !== 'image' && key !== 'title' && key !== 'author'}
+								{#if value && !['image', 'Title', 'Author(s)', 'md5'].includes(key)}
 									<div class="flex flex-col gap-1">
 										<p class="font-light text-zinc-400">{key}</p>
 										<p class="font-light">

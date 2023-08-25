@@ -3,27 +3,27 @@
 import { JSDOM } from 'jsdom';
 import axios from 'axios';
 import type { RequestEvent } from './$types';
-import fs from 'fs';
+import camelize from '../../utils/camelize';
 
 const cleanupTitle = (title: Element | null) => {
 	if (title === null) return '';
 	const el = title.querySelectorAll('font');
+	let edition = '';
 	if (el) {
+		edition =
+			Array.from(el)
+				.find((e) => e.textContent?.trim().match(/^\[.*?\]$/))
+				?.textContent?.trim() || '';
 		el.forEach((e) => e.remove());
 	}
-	return title.textContent;
+	return {
+		title: title.textContent?.trim(),
+		edition
+	};
 };
 
-function camelize(str: string) {
-	return str
-		.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
-			return index === 0 ? word.toLowerCase() : word.toUpperCase();
-		})
-		.replace(/\s+/g, '');
-}
-
-export async function POST(hmm: RequestEvent) {
-	const params = await hmm.request.json();
+export async function POST(req: RequestEvent) {
+	const params = await req.request.json();
 
 	const target = new URL('http://libgen.is/search.php');
 	target.searchParams.set('mode', params.mode);
@@ -52,6 +52,9 @@ export async function POST(hmm: RequestEvent) {
 				.map((row) => {
 					const cells = row.querySelectorAll('td');
 					return {
+						md5: Array.from(row.querySelectorAll('a'))
+							.find((e) => e.href.includes('?md5='))
+							?.href.split('=')?.[1],
 						id: cells[0].textContent,
 						author: cells[1].textContent,
 						series: Array.from(cells[2].querySelectorAll('a')).filter((e) =>
@@ -69,7 +72,7 @@ export async function POST(hmm: RequestEvent) {
 					};
 				});
 		} else {
-			const table = Array.from(document.querySelectorAll('table[rules="cols"]'));
+			const table = Array.from(document.querySelectorAll('body > table[rules="cols"]'));
 			final = table
 				.map(
 					(item) =>
@@ -91,17 +94,15 @@ export async function POST(hmm: RequestEvent) {
 										) as never as [string, string][]
 								)
 									.flat()
-									.map((e) => [camelize(e[0].split(':')[0]), e[1] || e[0].split(':')[1].trim()])
+									.map((e) => [e[0].split(':')[0], e[1] || e[0].split(':')[1].trim()])
 							),
+							md5: Array.from(item.querySelectorAll('a'))
+								.find((e) => e.href.includes('?md5='))
+								?.href.split('=')?.[1],
 							image: item.querySelector('img')?.src
 						} as never as Record<string, string | undefined>)
 				)
 				.filter((e) => Object.keys(e).length > 1);
-
-			final.forEach((e) => {
-				e['author'] = e['author(S)'];
-				delete e['author(S)'];
-			});
 		}
 
 		return new Response(

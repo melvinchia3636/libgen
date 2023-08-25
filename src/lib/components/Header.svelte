@@ -5,13 +5,13 @@
 </script>
 
 <header class="fixed top-0 w-full z-[9999]">
-	<a href="/" class="flex items-center gap-2 p-4 px-5 text-lg font-light">
+	<a href="/" class="flex items-center gap-2 p-4 px-5 text-lg font-light relative z-[9999]">
 		<Icon icon="mdi:book-open-page-variant-outline" class="w-7 h-7 text-orange-500 flex-shrink-0" />
 		<span>Libgen <span class="text-orange-500 font-medium">Remade</span> </span>
 	</a>
 
-	<Navbar />
-	<div class="flex items-center gap-4">
+	<Navbar />·
+	<div class="flex items-center gap-4 relative z-[9999]">
 		<ThemeToggleButton />
 		<a href="https://github.com/melvinchia3636/libgen" target="_blank">
 			<Icon
