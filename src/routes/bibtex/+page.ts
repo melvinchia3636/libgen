@@ -11,7 +11,7 @@ export async function load({ fetch, url }: LoadEvent) {
 			error: new Error('Invalid search request')
 		};
 
-	const response = await fetch('/book', {
+	const response = await fetch('/bibtex', {
 		method: 'POST',
 		body: JSON.stringify({
 			md5: searchParams.get('md5') || ''

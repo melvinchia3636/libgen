@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
+
 	export let data: {
 		[key: string]: any;
 		hashes: {
@@ -7,14 +9,26 @@
 	};
 </script>
 
+<svelte:head>
+	<title>
+		{data.title} - {data['Author(s)']}
+	</title>
+</svelte:head>
 <section class="flex-1 flex gap-16 justify-center my-32 px-12">
 	<div class="w-1/5 h-full flex flex-col items-center">
-		<img
-			src="http://libgen.is{data.image}"
-			class="w-full h-full object-contain"
-			referrerpolicy="no-referrer"
-			alt=""
-		/>
+		{#if data.image !== '../img/blank.png'}
+			<img
+				src="http://libgen.is{data.image}"
+				class="w-full h-full object-contain"
+				referrerpolicy="no-referrer"
+				alt=""
+			/>
+		{:else}
+			<Icon
+				icon="iconamoon:file-document-light"
+				class="w-64 h-full text-slate-400 dark:text-zinc-600"
+			/>
+		{/if}
 		<h2 class="mt-4 mb-2 w-full text-left">Hashes</h2>
 		<div class="text-xs flex flex-col gap-2">
 			{#each Object.entries(data.hashes) as [key, value]}

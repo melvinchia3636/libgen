@@ -84,7 +84,8 @@
 				>&lt;CODEBLOG/&gt;</span
 			>
 			<br />
-			Made with 💖 by <a href="https://thecodeblog.net" class="underline">Melvin Chia</a>. Project
+			Made with 🧡 by
+			<a href="https://thecodeblog.net" class="underline text-orange-500">Melvin Chia</a>. Project
 			under MIT License.
 		</p>
 	</footer>

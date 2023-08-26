@@ -30,11 +30,12 @@
 
 	function onSubmit(e: Event) {
 		e.preventDefault();
-		if ($query) {
+		const targetQuery = encodeURIComponent($query.trim());
+		if (targetQuery) {
 			switch (selectedCategory.id) {
 				case 1:
 					goto(
-						`/search?req=${$query}&lg_topic=libgen&open=${
+						`/search?req=${targetQuery}&lg_topic=libgen&open=${
 							$downloadType.id
 						}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
 							$searchWithMask
@@ -42,13 +43,13 @@
 					);
 					break;
 				case 2:
-					goto(`https://libgen.is/fiction/?q=${$query}`);
+					goto(`https://libgen.is/fiction/?q=${targetQuery}`);
 					break;
 				case 3:
-					goto(`https://libgen.is/scimag/?q=${$query}`);
+					goto(`https://libgen.is/scimag/?q=${targetQuery}`);
 					break;
 				case 4:
-					goto(`https://magzdb.org/makelist?t=${$query}`);
+					goto(`https://magzdb.org/makelist?t=${targetQuery}`);
 					break;
 			}
 		}
@@ -59,7 +60,7 @@
 	});
 </script>
 
-<div class="flex gap-2">
+<div class="flex gap-2 relative z-[9998]">
 	<div
 		class="flex items-center w-full bg-white dark:bg-zinc-700 p-2 px-4 rounded-md drop-shadow-md gap-4"
 	>

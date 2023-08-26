@@ -224,6 +224,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@orcid/bibtex-parse-js@^0.0.25":
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/@orcid/bibtex-parse-js/-/bibtex-parse-js-0.0.25.tgz#3a4996d2339cab55ab6e43849cc791efa7a35418"
+  integrity sha512-n6VuG5/WjiifC1DoUzq0sUCWNSbAyRZznBgvPcY4jVZ/2eJiMv2tNUAt2NukbnFExOUa0RyTOFsqhH2MGpiLgQ==
+
 "@polka/url@^1.0.0-next.20":
   version "1.0.0-next.21"
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"

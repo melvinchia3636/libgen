@@ -4,7 +4,6 @@
 import { JSDOM } from 'jsdom';
 import axios from 'axios';
 import type { RequestEvent } from './$types';
-import camelize from '../../utils/camelize';
 
 const zip = (a: Array<string>, b: Array<any> | null) => {
 	if (b) return Object.fromEntries(a.map((k, i) => [k, b[i]]).filter((e) => e[0]));
