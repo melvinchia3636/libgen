@@ -15,6 +15,7 @@ export async function POST(req: RequestEvent) {
 
 	const target = new URL('http://libgen.is/book/index.php');
 	target.searchParams.set('md5', params.md5);
+	if (params.tlm) target.searchParams.set('tlm', params.tlm);
 
 	try {
 		const { data } = await axios({
@@ -99,6 +100,16 @@ export async function POST(req: RequestEvent) {
 				.map((e) => [e.querySelector('th')?.textContent, e.querySelector('td')?.textContent])
 				.filter((e) => e[0])
 		);
+
+		final.descriptions = document.querySelector(
+			'body > table[rules="cols"] > tbody > tr:nth-last-child(4) > td'
+		)?.innerHTML;
+
+		final.toc = document
+			.querySelector('body > table[rules="cols"] > tbody > tr:nth-last-child(3) > td')
+			?.innerHTML.replace('<hr><font color="gray">Table of contents : <br></font>', '');
+
+		console.log(final.toc);
 
 		return new Response(JSON.stringify(final));
 	} catch (e) {

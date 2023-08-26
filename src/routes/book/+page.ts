@@ -14,7 +14,8 @@ export async function load({ fetch, url }: LoadEvent) {
 	const response = await fetch('/book', {
 		method: 'POST',
 		body: JSON.stringify({
-			md5: searchParams.get('md5') || ''
+			md5: searchParams.get('md5') || '',
+			tlm: searchParams.get('tlm') || ''
 		})
 	});
 	const _data = await response.json();
