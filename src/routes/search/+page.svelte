@@ -53,12 +53,17 @@
 					>
 						<td class="p-4 flex flex-col gap-1">
 							{#if book.series}
-								<a
-									href="/search?req={encodeURIComponent(book.series)}&column=series"
-									class="text-sm text-orange-500 hover:text-orange-600">{book.series}</a
-								>
+								<div>
+									<a
+										href="/search?req={encodeURIComponent(book.series)}&column=series"
+										class="text-sm text-orange-500 hover:text-orange-600">{book.series}</a
+									>
+								</div>
 							{/if}
-							<a href="/book?md5={book.md5}" class="flex flex-col gap-1">
+							<a
+								href="/book?md5={book.md5}"
+								class="flex flex-col gap-1 hover:underline hover:decoration-slate-600 hover:text-slate-800 dark:hover:decoration-zinc-500 dark:hover:text-zinc-300"
+							>
 								{book?.title?.title}
 								{#if book?.title?.edition}
 									<span class="text-sm text-slate-500 dark:text-zinc-500"

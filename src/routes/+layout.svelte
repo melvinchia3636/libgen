@@ -77,12 +77,16 @@
 		{/if}
 	</main>
 
-	<footer
-		class="mb-3 w-full flex items-center justify-center text-sm divide-x-[1.5px] divide-slate-600 font-light tracking-wider"
-	>
-		<a href="/letter-of-solidarity" class="block px-2">Letter of Solidarity</a>
-		<a href="/desktop" class="block px-2">Libgen Desktop</a>
-		<a href="/searching-guide" class="block px-2">Searching Guide</a>
+	<footer class="mb-3 w-full flex flex-col gap-6">
+		<p class="w-full px-8 text-xs text-center">
+			<span
+				class="inline-block text-base font-['JetBrains_Mono'] tracking-widest font-semibold opacity-50 mb-2"
+				>&lt;CODEBLOG/&gt;</span
+			>
+			<br />
+			Made with 💖 by <a href="https://thecodeblog.net" class="underline">Melvin Chia</a>. Project
+			under MIT License.
+		</p>
 	</footer>
 </div>
 

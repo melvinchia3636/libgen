@@ -6,7 +6,7 @@ import axios from 'axios';
 import type { RequestEvent } from './$types';
 import camelize from '../../utils/camelize';
 
-const zip = (a: Array<string>, b: Array<string> | null) => {
+const zip = (a: Array<string>, b: Array<any> | null) => {
 	if (b) return Object.fromEntries(a.map((k, i) => [k, b[i]]).filter((e) => e[0]));
 	return a;
 };
@@ -31,20 +31,54 @@ export async function POST(req: RequestEvent) {
 				.map((e) =>
 					!e.querySelector('table')
 						? Array.from(e.querySelectorAll('td'))
-								.map((e) => e.textContent?.trim())
-								.reduce((all: string[][], one, i) => {
+								.reduce((all: HTMLTableCellElement[][], one, i) => {
 									const ch = Math.floor(i / 2);
-									all[ch] = ([] as string[]).concat(all[ch] || [], one as string);
+									all[ch] = ([] as HTMLTableCellElement[]).concat(
+										all[ch] || [],
+										one as HTMLTableCellElement
+									);
 									return all;
 								}, [])
-								.map((e) => [e[0].replace(/:$/, ''), e[1]])
+								.map((e) => {
+									const key = e[0]?.textContent?.trim().replace(/:$/, '') || '';
+									if (e[1]?.querySelector('a')) {
+										return [
+											'islink|' + key,
+											Object.fromEntries(
+												Array.from(e[1].querySelectorAll('a')).map((e) => [
+													e.textContent?.trim() || '',
+													(() => {
+														const href = e.href;
+														switch (key) {
+															case 'BibTeX':
+																return href.replace('bibtex.php', '/bibtex');
+															case 'Desr. old vers.':
+																return href.replace('../book/index.php', '/book');
+															default:
+																return href;
+														}
+													})()
+												])
+											)
+										];
+									}
+									return [key, e[1]?.textContent?.trim() || ''];
+								})
 						: [
 								[
 									e.querySelector('td')?.textContent?.trim(),
 									zip(
 										...(Array.from(e?.querySelectorAll('table > tbody > tr')).map((e) =>
-											Array.from(e.querySelectorAll('td')).map((e) => e.textContent?.trim())
-										) as [Array<string>, Array<string> | null])
+											Array.from(e.querySelectorAll('td')).map((e) => {
+												if (e.querySelector('a')) {
+													return [
+														e.querySelector('a')?.textContent?.trim(),
+														e.querySelector('a')?.href.replace('../', 'http://libgen.is/')
+													];
+												}
+												return e.textContent?.trim();
+											})
+										) as [Array<string>, Array<any> | null])
 									)
 								]
 						  ]
@@ -69,6 +103,7 @@ export async function POST(req: RequestEvent) {
 
 		return new Response(JSON.stringify(final));
 	} catch (e) {
+		console.log(e);
 		return new Response('{"hello": "world"}');
 	}
 }

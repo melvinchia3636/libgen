@@ -49,14 +49,46 @@
 						<tr
 							class="even:bg-slate-300/50 even:dark:bg-zinc-700/50 border-b border-slate-300 dark:border-zinc-700"
 						>
-							<td class="py-4 px-5">{key}</td>
+							<td class="py-4 px-5">{key.split('|')[key.split('|').length - 1]}</td>
 							<td class="font-light">
 								{#if typeof value === 'string'}
 									{value}
+								{:else if key.startsWith('islink|')}
+									{#if Object.entries(value).length == 1}
+										<a
+											href={Object.entries(value)[0][1]}
+											class="text-orange-500 hover:text-orange-600"
+										>
+											{Object.entries(value)[0][0]}
+										</a>
+									{:else}
+										<ul class="list-disc list-inside">
+											{#each Object.entries(value) as [k, v]}
+												<li>
+													<a href={v} class="text-orange-500 hover:text-orange-600">
+														{k}
+													</a>
+												</li>
+											{/each}
+										</ul>
+									{/if}
 								{:else if Array.isArray(value)}
 									<ul class="py-2 list-disc list-inside">
 										{#each value as v}
-											<li class="py-2">{v}</li>
+											<li class="py-2">
+												{#if Array.isArray(v)}
+													<a
+														href={v[1]}
+														class="text-orange-500 hover:text-orange-600"
+														target="_blank"
+														rel="noopener noreferrer"
+													>
+														{v[0]}
+													</a>
+												{:else}
+													{v}
+												{/if}
+											</li>
 										{/each}
 									</ul>
 								{:else}
@@ -66,7 +98,7 @@
 												{#each Object.entries(value) as [k, v]}
 													<tr class="border-b-2 border-zinc-700">
 														<td class="py-2 px-3 border-r-2 border-zinc-700">{k}</td>
-														<td class="px-3">{v}</td>
+														<td class="px-3">{v || '-'}</td>
 													</tr>
 												{/each}
 											</tbody>

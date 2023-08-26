@@ -223,6 +223,9 @@
 					<DropDownButton href="https://libgen.is/fiction/?">Fictions</DropDownButton>
 					<DropDownButton href="http://libgen.is/scimag/">Scientific articles</DropDownButton>
 					<DropDownButton href="http://magzdb.org/">Magazines</DropDownButton>
+					<DropDownButton noNewWindow={true} href="/letter-of-solidarity">
+						Letter of Solidarity
+					</DropDownButton>
 				</ul>
 			</li>
 			<li class="middle absolute left-1/2 -translate-x-1/2" />
