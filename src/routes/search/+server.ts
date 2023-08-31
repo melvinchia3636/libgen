@@ -34,6 +34,8 @@ export async function POST(req: RequestEvent) {
 	target.searchParams.set('res', params.res);
 	target.searchParams.set('column', params.column);
 	target.searchParams.set('page', params.page);
+	target.searchParams.set('sort', params.sort);
+	target.searchParams.set('sortmode', params.sortmode);
 
 	try {
 		const { data } = await axios({

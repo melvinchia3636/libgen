@@ -109,8 +109,6 @@ export async function POST(req: RequestEvent) {
 			.querySelector('body > table[rules="cols"] > tbody > tr:nth-last-child(3) > td')
 			?.innerHTML.replace('<hr><font color="gray">Table of contents : <br></font>', '');
 
-		console.log(final.toc);
-
 		return new Response(JSON.stringify(final));
 	} catch (e) {
 		console.log(e);

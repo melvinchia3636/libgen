@@ -1,7 +1,10 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import Pagination from '$lib/components/search/Pagination.svelte';
 	import SearchBox from '$lib/components/search/SearchBox.svelte';
 	import SearchFilter from '$lib/components/search/SearchFilter.svelte';
+	import TableHeader from '$lib/components/search/TableHeader.svelte';
+	import Icon from '@iconify/svelte';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -13,6 +16,17 @@
 	onMount(() => {
 		urlParams = new URLSearchParams(window.location.search);
 	});
+
+	const HEADERS = {
+		title: 'Title',
+		author: 'Author(s)',
+		publisher: 'Publisher',
+		year: 'Year',
+		pages: 'Pages',
+		language: 'Language',
+		filesize: 'Size',
+		extension: 'Extension'
+	};
 </script>
 
 <svelte:head>
@@ -36,14 +50,10 @@
 		<table class="w-4/5">
 			<thead class="border-b border-slate-300 dark:border-zinc-600 !font-light">
 				<tr>
-					<th class="p-4 text-left">Title</th>
-					<th class="p-4 text-left">Author(s)</th>
-					<th class="p-4 text-center">Year</th>
-					<th class="p-4 text-center">Pages</th>
-					<th class="p-4 text-center">Language</th>
-					<th class="p-4 text-center">Size</th>
-					<th class="p-4 text-center">Extension</th>
-					<th class="p-4 text-center">Download</th>
+					{#each Object.entries(HEADERS) as [sort, name]}
+						<TableHeader {sort} {name} />
+					{/each}
+					<th class="py-4 px-2 text-center">Download</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -87,12 +97,13 @@
 								{/each}
 							</span>
 						</td>
-						<td class="p-4 font-light text-center">{book.year}</td>
-						<td class="p-4 font-light text-center">{book.pages}</td>
-						<td class="p-4 font-light text-center">{book.language}</td>
-						<td class="whitespace-nowrap p-4 font-light text-center">{book.size}</td>
-						<td class="p-4 font-light text-center">{book.extension}</td>
-						<td class="p-4 font-light text-center">
+						<td class="py-4 px-2 font-light text-center">{book.publisher}</td>
+						<td class="py-4 px-2 font-light text-center">{book.year}</td>
+						<td class="py-4 px-2 font-light text-center">{book.pages}</td>
+						<td class="py-4 px-2 font-light text-center">{book.language}</td>
+						<td class="whitespace-nowrap py-4 px-2 font-light text-center">{book.size}</td>
+						<td class="py-4 px-2 font-light text-center">{book.extension}</td>
+						<td class="py-4 px-2 font-light text-center">
 							<a
 								href={book.mirror1}
 								target="_blank"
@@ -115,7 +126,39 @@
 			</tbody>
 		</table>
 	{:else}
-		<div class="w-4/5 flex flex-col gap-4 mb-2">
+		<div class="w-4/5 flex flex-col mb-2">
+			<div class="flex items-center mb-2">
+				Sort by:
+				{#each Object.entries(HEADERS) as [sort, name], idx}
+					<button
+						class="ml-2 {urlParams?.get('sort') === sort
+							? 'text-zinc-100 hover:text-zinc-200'
+							: 'text-zinc-500 hover:text-zinc-400'} transition-all flex items-center gap-1"
+						on:click={() => {
+							if (urlParams?.get('sort') !== sort || urlParams?.get('sortmode') === 'DESC') {
+								urlParams?.set('sort', sort);
+								urlParams?.set('sortmode', urlParams.get('sortmode') === 'DESC' ? 'ASC' : 'DESC');
+							} else {
+								urlParams?.delete('sort');
+								urlParams?.delete('sortmode');
+							}
+
+							const newURL = `/search?${urlParams?.toString()}`;
+							goto(newURL);
+						}}
+					>
+						{name}{idx !== Object.keys(HEADERS).length - 1 && urlParams?.get('sort') !== sort ? "," : ""}
+						{#if urlParams?.get('sort') === sort}
+							<Icon
+								icon={urlParams?.get('sort') === sort && urlParams.get('sortmode') === 'DESC'
+									? 'fluent:text-sort-descending-16-filled'
+									: 'fluent:text-sort-ascending-16-filled'}
+								class="text-zinc-100 stroke-bold"
+							/>{idx !== Object.keys(HEADERS).length - 1 ? ',' : ""}
+						{/if}
+					</button>
+				{/each}
+			</div>
 			{#each data.data as book}
 				<div class="flex p-8 gap-8 bg-white dark:bg-zinc-700/50 rounded-md shadow-md items-start">
 					<img
@@ -165,3 +208,9 @@
 	{/if}
 	<Pagination {data} {currentPage} {urlParams} />
 </section>
+
+<style>
+	:global(.stroke-bold > path) {
+		stroke-width: 5px !important;
+	}
+</style>

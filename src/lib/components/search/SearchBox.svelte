@@ -13,7 +13,9 @@
 		viewResults,
 		resultsCount,
 		searchWithMask,
-		searchField
+		searchField,
+		sortBy,
+		sortDirection
 	} from '$lib/store/search';
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -39,7 +41,7 @@
 							$downloadType.id
 						}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
 							$searchWithMask
-						)}`
+						)}${$sortBy ? `&sort=${$sortBy.id}&sortmode=${$sortDirection}` : ''}`
 					);
 					break;
 				case 2:
@@ -122,7 +124,7 @@
 	</div>
 	<button
 		on:click={onSubmit}
-		class="bg-orange-500 text-[#f6f8fa] flex items-center pl-6 pr-5 rounded-md shadow-md"
+		class="bg-orange-500 text-[#f6f8fa] flex items-center pl-6 pr-5 rounded-md font-medium shadow-md"
 	>
 		Search <Icon icon="uil:arrow-right" class="w-6 h-6 ml-1" />
 	</button>

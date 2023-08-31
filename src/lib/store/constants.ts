@@ -1,4 +1,4 @@
-import type { IDownloadTypes, ISearchFields } from './types';
+import type { IDownloadTypes, ISearchFields, ISortFields } from './types';
 
 export const downloadTypes: IDownloadTypes = [
 	{ id: 0, name: 'Resumed dl with original filename' },
@@ -18,5 +18,17 @@ export const searchFields: ISearchFields = [
 	{ id: 'language', name: 'Language' },
 	{ id: 'md5', name: 'MD5' },
 	{ id: 'tags', name: 'Tags' },
+	{ id: 'extension', name: 'Extension' }
+];
+
+export const sortFields: ISortFields = [
+	{ id: 'id', name: 'ID' },
+	{ id: 'title', name: 'Title' },
+	{ id: 'author', name: 'Author(s)' },
+	{ id: 'publisher', name: 'Publisher' },
+	{ id: 'year', name: 'Year' },
+	{ id: 'pages', name: 'Pages' },
+	{ id: 'language', name: 'Language' },
+	{ id: 'filesize', name: 'Filesize' },
 	{ id: 'extension', name: 'Extension' }
 ];

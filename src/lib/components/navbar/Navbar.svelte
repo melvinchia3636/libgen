@@ -59,7 +59,6 @@
 			} else {
 				navWidth = Math.min(100, 56 + (window.scrollY - 50) / 2);
 			}
-			updateNavbar();
 		};
 	});
 </script>
@@ -73,7 +72,7 @@
 		style="width: {navWidth}vw"
 	>
 		<ul
-			class="flex items-center h-full gap-12 px-6 bg-white dark:bg-zinc-700 uppercase font-light tracking-widest text-sm"
+			class="flex relative items-center h-full gap-12 px-6 bg-white dark:bg-zinc-700 uppercase font-light tracking-widest text-sm"
 		>
 			<li
 				aria-current={$page.url.pathname === '/' ? 'page' : undefined}

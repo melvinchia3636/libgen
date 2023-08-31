@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { downloadTypes, searchFields } from '$lib/store/constants';
+	import { downloadTypes, searchFields, sortFields } from '$lib/store/constants';
 	import {
 		downloadType,
 		query,
 		resultsCount,
 		searchField,
 		searchWithMask,
+		sortBy,
+		sortDirection,
 		viewResults
 	} from '$lib/store/search';
 	import { theme } from '$lib/store/theme';
@@ -25,7 +27,7 @@
 			downloadType.set(downloadTypes[parseInt(searchParams.get('open') ?? '0')]);
 		}
 		if (searchParams.has('view')) {
-			viewResults.set(searchParams.get('view') ?? '');
+			viewResults.set((searchParams.get('view') as 'simple' | 'detailed' | null) ?? 'simple');
 		}
 		if (searchParams.has('res')) {
 			resultsCount.set(parseInt(searchParams.get('res') ?? '0'));
@@ -37,6 +39,12 @@
 			searchField.set(
 				searchFields.find((field) => field.id === searchParams.get('column')) || searchFields[0]
 			);
+		}
+		if (searchParams.has('sort')) {
+			sortBy.set(sortFields.find((field) => field.id === searchParams.get('sort')) || null);
+		}
+		if (searchParams.has('sortmode')) {
+			sortDirection.set((searchParams.get('sortmode') as 'ASC' | 'DESC') ?? null);
 		}
 	}
 
@@ -77,7 +85,7 @@
 		{/if}
 	</main>
 
-	<footer class="mb-3 w-full flex flex-col gap-6">
+	<footer class="mb-3 w-full flex flex-col gap-6 mt-8">
 		<p class="w-full px-8 text-xs text-center">
 			<span
 				class="inline-block text-base font-['JetBrains_Mono'] tracking-widest font-semibold opacity-50 mb-2"

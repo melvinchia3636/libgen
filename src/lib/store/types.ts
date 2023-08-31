@@ -11,3 +11,10 @@ export type ISearchField = {
 };
 
 export type ISearchFields = ISearchField[];
+
+export type ISortField = {
+	id: string;
+	name: string;
+};
+
+export type ISortFields = ISortField[];

@@ -29,7 +29,7 @@
 				class="w-64 h-full text-slate-400 dark:text-zinc-600"
 			/>
 		{/if}
-		<h2 class="mt-4 mb-2 w-full text-left">Hashes</h2>
+		<h2 class="mt-4 mb-2 w-full text-left font-medium">Hashes</h2>
 		<div class="text-xs flex flex-col gap-2 w-full">
 			{#each Object.entries(data.hashes) as [key, value]}
 				<div class="flex flex-col">
@@ -125,17 +125,13 @@
 				{/each}
 			</tbody>
 		</table>
-		{#if data.descriptions}
-			<h2 class="mt-6 mb-3 font-medium text-2xl">Descriptions</h2>
-			<div class="font-light">
-				{@html data.descriptions}
-			</div>
-		{/if}
-		{#if data.toc}
-			<h2 class="mt-6 mb-3 font-medium text-2xl">Table of Contents</h2>
-			<div class="font-light">
-				{@html data.toc}
-			</div>
-		{/if}
+		{#each Object.entries( { descriptions: 'Descriptions', toc: 'Table of Contents' } ) as [key, value]}
+			{#if data[key]}
+				<h2 class="mt-8 mb-3 font-medium text-2xl">{value}</h2>
+				<div class="font-light">
+					{@html data[key]}
+				</div>
+			{/if}
+		{/each}
 	</div>
 </section>

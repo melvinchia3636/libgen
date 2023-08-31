@@ -24,7 +24,9 @@ export async function load({ fetch, url }: LoadEvent) {
 			res: searchParams.get('res') || '25',
 			column: searchParams.get('column') || 'def',
 			phrase: searchParams.get('phrase') || '0',
-			page: searchParams.get('page') || '1'
+			page: searchParams.get('page') || '1',
+			sort: searchParams.get('sort') || '',
+			sortmode: searchParams.get('sortmode') || ''
 		})
 	});
 	const _data = await response.json();
