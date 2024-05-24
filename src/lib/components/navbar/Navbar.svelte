@@ -91,7 +91,7 @@
 				</a>
 				<ul
 					id="menu"
-					class="bg-white dark:bg-zinc-700 p-4 grid grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+					class="bg-white dark:bg-zinc-700 p-4 grid grid-cols-2 xl:grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 !-left-[400%] xl:!-left-[500%] transition duration-150 ease-in-out origin-top min-w-32 w-max"
 				>
 					{#each Object.keys(topics) as topic}
 						<li class="rounded-md relative group">
@@ -119,26 +119,6 @@
 							</ul>
 						</li>
 					{/each}
-				</ul>
-			</li>
-			<li
-				aria-current={$page.url.pathname === '/' ? 'page' : undefined}
-				class="relative h-full flex items-center justify-center"
-			>
-				<!-- svelte-ignore a11y-missing-attribute -->
-				<a class="rounded-sm flex items-center [all:inherit] !gap-2">
-					forum
-					<Icon icon="mdi:chevron-down" class="w-4 h-4" />
-				</a>
-				<ul
-					id="menu"
-					class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
-				>
-					<DropDownButton href="https://forum.mhut.org/viewtopic.php?p=9000">Sitemap</DropDownButton
-					>
-					<DropDownButton href="https://forum.mhut.org/viewtopic.php?t=6423">
-						Report an error
-					</DropDownButton>
 				</ul>
 			</li>
 			<li
@@ -225,6 +205,11 @@
 					<DropDownButton noNewWindow={true} href="/letter-of-solidarity">
 						Letter of Solidarity
 					</DropDownButton>
+					<DropDownButton href="https://forum.mhut.org/viewtopic.php?p=9000">Sitemap</DropDownButton
+						>
+						<DropDownButton href="https://forum.mhut.org/viewtopic.php?t=6423">
+							Report an error
+						</DropDownButton>
 				</ul>
 			</li>
 			<li class="middle absolute left-1/2 -translate-x-1/2" />

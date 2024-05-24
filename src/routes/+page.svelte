@@ -13,11 +13,11 @@
 <section class="flex-1 flex flex-col items-center justify-center">
 	<h1
 		class="text-[2.5rem] uppercase font-light tracking-widest pb-2 {isFilterOpen &&
-			'mt-32'} transition-all"
+			'mt-32'} transition-all text-center"
 	>
 		Library Genesis
 	</h1>
-	<p class="mb-8 font-light tracking-wide">
+	<p class="mb-8 font-light tracking-wide text-center">
 		Enables free access to content that is otherwise paywalled or not digitized elsewhere
 	</p>
 	<div class="w-3/5">
