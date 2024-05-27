@@ -14,7 +14,7 @@ export async function load({ fetch, url }: LoadEvent) {
 			error: new Error('Invalid search request')
 		};
 
-	const response = await fetch('/search', {
+	const response = await fetch('/search/api', {
 		method: 'POST',
 		body: JSON.stringify({
 			mode: searchParams.get('mode') || '',

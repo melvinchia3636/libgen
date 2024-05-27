@@ -46,8 +46,12 @@
 
 	let navWidth = 56;
 
+	let searchParams: URLSearchParams;
+
 	onMount(() => {
 		updateNavbar();
+
+		searchParams = new URLSearchParams(window.location.search);
 
 		navigating.subscribe(() => {
 			updateNavbar();
@@ -169,7 +173,7 @@
 				</ul>
 			</li>
 			<li
-				aria-current={['last', 'modified'].includes($page.url.searchParams.get('mode') || '')
+				aria-current={['last', 'modified'].includes(searchParams?.get('mode') || '')
 					? 'page'
 					: undefined}
 				class="relative h-full flex items-center justify-center"

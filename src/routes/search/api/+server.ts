@@ -3,7 +3,7 @@
 import { JSDOM } from 'jsdom';
 import axios from 'axios';
 import type { RequestEvent } from './$types';
-import camelize from '../../utils/camelize';
+import camelize from '../../../utils/camelize';
 
 const cleanupTitle = (title: Element | null) => {
 	if (title === null) return '';
@@ -21,6 +21,7 @@ const cleanupTitle = (title: Element | null) => {
 		edition
 	};
 };
+
 
 export async function POST(req: RequestEvent) {
 	const params = await req.request.json();
