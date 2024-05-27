@@ -26,14 +26,14 @@
 		{:else}
 			<Icon
 				icon="iconamoon:file-document-light"
-				class="w-64 h-full text-slate-400 dark:text-zinc-600"
+				class="w-64 h-full text-zinc-400 dark:text-zinc-600"
 			/>
 		{/if}
 		<h2 class="mt-4 mb-2 w-full text-left font-medium">Hashes</h2>
 		<div class="text-xs flex flex-col gap-2 w-full">
 			{#each Object.entries(data.hashes) as [key, value]}
 				<div class="flex flex-col">
-					<span class="text-slate-400 dark:text-zinc-400">{key}</span>
+					<span class="text-zinc-400 dark:text-zinc-400">{key}</span>
 					{#each value.split(' ') as hash}
 						<span class="font-['JetBrains_Mono'] break-all">{hash}</span>
 					{/each}
@@ -61,7 +61,7 @@
 				{#each Object.entries(data) as [key, value]}
 					{#if value && !['image', 'title', 'Author(s)', 'hashes', 'toc', 'descriptions'].includes(key)}
 						<tr
-							class="even:bg-slate-300/50 even:dark:bg-zinc-700/50 border-b border-slate-300 dark:border-zinc-700"
+							class="even:bg-zinc-300/40 even:dark:bg-zinc-800/50 border-b border-zinc-300 dark:border-zinc-700"
 						>
 							<td class="py-4 px-5">{key.split('|')[key.split('|').length - 1]}</td>
 							<td class="font-light">
@@ -107,11 +107,11 @@
 									</ul>
 								{:else}
 									<div class="py-4 pr-4">
-										<table class="border-2 border-zinc-700 w-full">
+										<table class="border-2 border-zinc-300 dark:border-zinc-700 w-full">
 											<tbody>
 												{#each Object.entries(value) as [k, v]}
-													<tr class="border-b-2 border-zinc-700">
-														<td class="py-2 px-3 border-r-2 border-zinc-700">{k}</td>
+													<tr class="border-b-2 border-zinc-300 dark:border-zinc-700">
+														<td class="py-2 px-3 border-r-2 border-zinc-300 dark:border-zinc-700">{k}</td>
 														<td class="px-3">{v || '-'}</td>
 													</tr>
 												{/each}

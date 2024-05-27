@@ -36,7 +36,7 @@
 					? 'fluent:text-sort-descending-16-filled'
 					: 'fluent:text-sort-ascending-16-filled'
 				: 'icon-park-outline:sort-two'}
-			class="{urlParams?.get('sort') === sort ? 'text-zinc-100' : 'text-zinc-500'} stroke-bold"
+			class="{urlParams?.get('sort') === sort ? 'text-orange-500 dark:text-zinc-100' : 'text-zinc-500'} stroke-bold"
 		/>
 	</button>
 </th>

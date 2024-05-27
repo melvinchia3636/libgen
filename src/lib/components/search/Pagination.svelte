@@ -20,7 +20,7 @@
 		{#if parseInt(data.resultsCount) > parseInt(urlParams?.get('res') || '25')}
 			<button
 				disabled={currentPage <= 1}
-				class="relative flex items-center rounded-md bg-transparent px-4 py-2.5 pl-2 transition-all duration-300 hover:bg-slate-300/50 dark:hover:bg-zinc-700/50 disabled:hover:bg-transparent disabled:text-slate-300 disabled:dark:text-zinc-600 disabled:cursor-default"
+				class="relative flex items-center rounded-md bg-transparent px-4 py-2.5 pl-2 transition-all duration-300 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 disabled:hover:bg-transparent disabled:text-zinc-300 disabled:dark:text-zinc-600 disabled:cursor-default"
 				on:click={() => {
 					if (currentPage > 1) {
 						goToPage(currentPage - 1);
@@ -32,7 +32,7 @@
 			</button>
 		{/if}
 	</li>
-	<ul class="list-style-none flex gap-4 items-center">
+	<ul class="list-style-none hidden sm:flex gap-4 items-center">
 		{#if parseInt(data.resultsCount) > 0}
 			{#each Array.from( { length: Math.ceil(parseInt(data.resultsCount) / parseInt(urlParams?.get('res') || '25')) } )
 				.map((_, i) => i)
@@ -42,7 +42,7 @@
 						class="relative block rounded px-3 py-1.5 transition-all duration-300 {i + 1 ===
 						currentPage
 							? 'dark:bg-orange-500 text-orange-500 dark:text-zinc-100 text-xl'
-							: 'text-slate-400 dark:text-zinc-500 hover:text-slate-700 dark:hover:text-zinc-300'}"
+							: 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'}"
 						on:click={() => goToPage(i + 1)}
 					>
 						{i + 1}
@@ -51,12 +51,15 @@
 			{/each}
 		{/if}
 	</ul>
+	<p class="mt-3">
+		Page {currentPage}
+	</p>
 	<li>
 		{#if parseInt(data.resultsCount) > parseInt(urlParams?.get('res') || '25')}
 			<button
 				disabled={currentPage >=
 					Math.ceil(parseInt(data.resultsCount) / parseInt(urlParams?.get('res') || '25'))}
-				class="relative flex items-center rounded-md bg-transparent px-4 pr-2.5 py-2 transition-all duration-300 hover:bg-slate-300/50 dark:hover:bg-zinc-700/50 disabled:hover:bg-transparent disabled:text-slate-300 disabled:dark:text-zinc-600 disabled:cursor-default"
+				class="relative flex items-center rounded-md bg-transparent px-4 pr-2.5 py-2 transition-all duration-300 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 disabled:hover:bg-transparent disabled:text-zinc-300 disabled:dark:text-zinc-600 disabled:cursor-default"
 				on:click={() => {
 					if (
 						currentPage <

@@ -67,11 +67,11 @@
 </script>
 
 <div
-	class="bg-white dark:bg-zinc-700 w-full rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-500 {isFilterOpen
-		? 'max-h-[36rem] py-2'
+	class="bg-white dark:bg-zinc-800 w-full rounded-md px-4 mt-4 shadow-md overflow-hidden transition-all duration-700 {isFilterOpen
+		? 'max-h-[80rem] py-2'
 		: 'max-h-0 py-0'}"
 >
-	<ul class="flex flex-col divide-y divide-slate-200 dark:divide-zinc-600">
+	<ul class="flex flex-col divide-y divide-zinc-200 dark:divide-zinc-700">
 		<DownloadType {selectedDownloadType} />
 		<ViewResults />
 		<ResultsPerPage {resPerPage} />

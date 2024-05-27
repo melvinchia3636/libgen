@@ -47,84 +47,86 @@
 			<p class="text-xl">No results found</p>
 		</div>
 	{:else if urlParams?.get('view') !== 'detailed'}
-		<table class="w-4/5">
-			<thead class="border-b border-slate-300 dark:border-zinc-600 !font-light">
-				<tr>
-					{#each Object.entries(HEADERS) as [sort, name]}
-						<TableHeader {sort} {name} />
-					{/each}
-					<th class="py-4 px-2 text-center">Download</th>
-				</tr>
-			</thead>
-			<tbody>
-				{#each data.data as book}
-					<tr
-						class="border-b border-slate-300 dark:border-zinc-600 odd:bg-slate-300/30 dark:odd:bg-zinc-700/50"
-					>
-						<td class="p-4 flex flex-col gap-1">
-							{#if book.series}
-								<div>
-									<a
-										href="/search?req={encodeURIComponent(book.series)}&column=series"
-										class="text-sm text-orange-500 hover:text-orange-600">{book.series}</a
-									>
-								</div>
-							{/if}
-							<a
-								href="/book?md5={book.md5}"
-								class="flex flex-col gap-1 hover:underline hover:decoration-slate-600 hover:text-slate-800 dark:hover:decoration-zinc-500 dark:hover:text-zinc-300"
-							>
-								{book?.title?.title}
-								{#if book?.title?.edition}
-									<span class="text-sm text-slate-500 dark:text-zinc-500"
-										>{book?.title?.edition}</span
-									>
-								{/if}
-							</a>
-						</td>
-						<td class="p-4 font-light">
-							<span class="flex flex-wrap"
-								>{#each (book.author || '').split(/,|;/) as author, i}
-									<a
-										href="/search?req={encodeURIComponent(author.trim())}&column=author"
-										class="text-orange-500 hover:text-orange-600"
-									>
-										{author.trim()}
-									</a>
-									{#if i < (book.author?.split(/,|;/) || '')?.length - 1}
-										,&nbsp;
-									{/if}
-								{/each}
-							</span>
-						</td>
-						<td class="py-4 px-2 font-light text-center">{book.publisher}</td>
-						<td class="py-4 px-2 font-light text-center">{book.year}</td>
-						<td class="py-4 px-2 font-light text-center">{book.pages}</td>
-						<td class="py-4 px-2 font-light text-center">{book.language}</td>
-						<td class="whitespace-nowrap py-4 px-2 font-light text-center">{book.size}</td>
-						<td class="py-4 px-2 font-light text-center">{book.extension}</td>
-						<td class="py-4 px-2 font-light text-center">
-							<a
-								href={book.mirror1}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="text-orange-500 hover:text-orange-600"
-							>
-								Mirror 1
-							</a>
-							<a
-								href={book.mirror2}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="text-orange-500 hover:text-orange-600"
-							>
-								Mirror 2
-							</a>
-						</td>
+		<div class="w-full overflow-x-auto px-8 flex">
+			<table class="w-4/5">
+				<thead class="border-b border-zinc-300 dark:border-zinc-600 !font-light">
+					<tr>
+						{#each Object.entries(HEADERS) as [sort, name]}
+							<TableHeader {sort} {name} />
+						{/each}
+						<th class="py-4 px-2 text-center">Download</th>
 					</tr>
-				{/each}
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					{#each data.data as book}
+						<tr
+							class="border-b border-zinc-300 dark:border-zinc-600 odd:bg-zinc-300/30 dark:odd:bg-zinc-700/50"
+						>
+							<td class="p-4 flex flex-col gap-1">
+								{#if book.series}
+									<div>
+										<a
+											href="/search?req={encodeURIComponent(book.series)}&column=series"
+											class="text-sm text-orange-500 hover:text-orange-600">{book.series}</a
+										>
+									</div>
+								{/if}
+								<a
+									href="/book?md5={book.md5}"
+									class="flex flex-col gap-1 hover:underline hover:decoration-zinc-600 hover:text-zinc-800 dark:hover:decoration-zinc-500 dark:hover:text-zinc-300"
+								>
+									{book?.title?.title}
+									{#if book?.title?.edition}
+										<span class="text-sm text-zinc-500 dark:text-zinc-500"
+											>{book?.title?.edition}</span
+										>
+									{/if}
+								</a>
+							</td>
+							<td class="p-4 font-light">
+								<span
+									>{#each (book.author || '').split(/,|;/) as author, i}
+										<a
+											href="/search?req={encodeURIComponent(author.trim())}&column=author"
+											class="text-orange-500 hover:text-orange-600 break-all"
+										>
+											{author.trim()}
+										</a>
+										{#if i < (book.author?.split(/,|;/) || '')?.length - 1}
+											,&nbsp;
+										{/if}
+									{/each}
+								</span>
+							</td>
+							<td class="py-4 px-2 font-light text-center">{book.publisher}</td>
+							<td class="py-4 px-2 font-light text-center">{book.year}</td>
+							<td class="py-4 px-2 font-light text-center">{book.pages}</td>
+							<td class="py-4 px-2 font-light text-center">{book.language}</td>
+							<td class="whitespace-nowrap py-4 px-2 font-light text-center">{book.size}</td>
+							<td class="py-4 px-2 font-light text-center">{book.extension}</td>
+							<td class="py-4 px-2 font-light text-center">
+								<a
+									href={book.mirror1}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-orange-500 hover:text-orange-600"
+								>
+									Mirror 1
+								</a>
+								<a
+									href={book.mirror2}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-orange-500 hover:text-orange-600"
+								>
+									Mirror 2
+								</a>
+							</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
 	{:else}
 		<div class="w-4/5 flex flex-col mb-2">
 			<div class="flex items-center mb-2">
@@ -147,20 +149,24 @@
 							goto(newURL);
 						}}
 					>
-						{name}{idx !== Object.keys(HEADERS).length - 1 && urlParams?.get('sort') !== sort ? "," : ""}
+						{name}{idx !== Object.keys(HEADERS).length - 1 && urlParams?.get('sort') !== sort
+							? ','
+							: ''}
 						{#if urlParams?.get('sort') === sort}
 							<Icon
 								icon={urlParams?.get('sort') === sort && urlParams.get('sortmode') === 'DESC'
 									? 'fluent:text-sort-descending-16-filled'
 									: 'fluent:text-sort-ascending-16-filled'}
 								class="text-zinc-100 stroke-bold"
-							/>{idx !== Object.keys(HEADERS).length - 1 ? ',' : ""}
+							/>{idx !== Object.keys(HEADERS).length - 1 ? ',' : ''}
 						{/if}
 					</button>
 				{/each}
 			</div>
 			{#each data.data as book}
-				<div class="flex p-8 gap-8 bg-white dark:bg-zinc-700/50 rounded-md shadow-md items-start">
+				<div
+					class="flex p-8 mb-4 gap-8 bg-white dark:bg-zinc-800/50 rounded-md shadow-md items-start"
+				>
 					<img
 						src="http://libgen.is{book.image}"
 						class="w-64 h-full object-contain"

@@ -123,7 +123,7 @@
 			for the metadata - care for the backup. Water the flowers - clean the volcanoes.
 		</p>
 
-		<div class="mt-16 pt-8 border-t-2 border-slate-900">
+		<div class="mt-16 pt-8 border-t-2 border-zinc-900">
 			<ol class="list-decimal ml-6 flex flex-col gap-2">
 				<li id="fn-1">
 					Larivière, Vincent, Stefanie Haustein, and Philippe Mongeon. “<a

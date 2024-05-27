@@ -6,8 +6,8 @@
 	/* switch */
 	--slider_width: 2.875em;
 	--slider_height: 1.5em;
-	--slider_light_bg: #cbd5e1;
-	--slider_night_bg: #18181b;
+	--slider_light_bg: rgb(212 212 216);
+	--slider_night_bg: rgb(39 39 42);
 	--slider_offset: calc((var(--slider_height) - var(--circle_diameter)) / 2);
 	--slider_radius: calc(var(--slider_height) / 2);
 	/* circle */

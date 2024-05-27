@@ -53,26 +53,28 @@
 			updateNavbar();
 		});
 
-		document.onscroll = (e) => {
+		const updateStyle = (e) => {
 			if (window.scrollY <= 50) {
 				navWidth = 56;
 			} else {
 				navWidth = Math.min(100, 56 + (window.scrollY - 50) / 2);
 			}
 		};
+
+		window.addEventListener('scroll', updateStyle)
 	});
 </script>
 
-<nav class="drop-shadow-md absolute top-0 left-1/2 -translate-x-1/2 h-full">
+<nav class="drop-shadow-md absolute top-0 left-1/2 -translate-x-1/2 h-full hidden xl:flex">
 	<svg viewBox="0 0 2 3" aria-hidden="true" class="translate-x-[1px] flex-shrink-0 w-full">
-		<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" class="fill-white dark:fill-zinc-700" />
+		<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" class="fill-white dark:fill-zinc-800" />
 	</svg>
 	<div
-		class="bg-white dark:bg-zinc-700 relative flex justify-center transition-all"
+		class="bg-white dark:bg-zinc-800 relative flex justify-center transition-all"
 		style="width: {navWidth}vw"
 	>
 		<ul
-			class="flex relative items-center h-full gap-12 px-6 bg-white dark:bg-zinc-700 uppercase font-light tracking-widest text-sm"
+			class="flex relative items-center h-full gap-12 px-6 bg-white dark:bg-zinc-800 uppercase font-light tracking-widest text-sm"
 		>
 			<li
 				aria-current={$page.url.pathname === '/' ? 'page' : undefined}
@@ -91,7 +93,7 @@
 				</a>
 				<ul
 					id="menu"
-					class="bg-white dark:bg-zinc-700 p-4 grid grid-cols-2 xl:grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 !-left-[400%] xl:!-left-[500%] transition duration-150 ease-in-out origin-top min-w-32 w-max"
+					class="bg-white dark:bg-zinc-800 p-4 grid grid-cols-2 xl:grid-cols-3 rounded-md transform scale-0 group-hover:scale-100 absolute top-12 !-left-[400%] xl:!-left-[500%] transition duration-150 ease-in-out origin-top min-w-32 w-max"
 				>
 					{#each Object.keys(topics) as topic}
 						<li class="rounded-md relative group">
@@ -105,7 +107,7 @@
 								<Icon icon="mdi:chevron-right" class="w-4 h-4" />
 							</a>
 							<ul
-								class="subcategory max-h-96 overflow-scroll p-4 shadow-md z-[9999] bg-white dark:bg-zinc-700 rounded-md absolute top-0 right-2 origin-top-left"
+								class="subcategory max-h-96 overflow-scroll p-4 shadow-md z-[9999] bg-white dark:bg-zinc-800 rounded-md absolute top-0 right-2 origin-top-left"
 							>
 								{#each Object.entries(topics[topic]) as [id, subtopic]}
 									<a href="/search?req=topicid{id}&column=topic">
@@ -132,12 +134,12 @@
 				</a>
 				<ul
 					id="menu"
-					class="bg-white dark:bg-zinc-700 overflow-hidden flex gap-4 rounded-md p-6 transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+					class="bg-white dark:bg-zinc-800 overflow-hidden flex gap-4 rounded-md p-6 transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 				>
 					<div class="flex flex-col">
 						<header class="flex flex-col">
 							<h3 class="text-base font-medium pb-3 px-4">Mirrors</h3>
-							<div class="w-full border-b border-slate-200" />
+							<div class="w-full border-b border-zinc-200 dark:border-zinc-700" />
 						</header>
 						<DropDownButton inner={true} href="http://libgen.is/">Libgen.is</DropDownButton>
 						<DropDownButton inner={true} href="http://libgen.rs/">Libgen.rs</DropDownButton>
@@ -152,7 +154,7 @@
 					<div class="flex flex-col">
 						<header class="flex flex-col">
 							<h3 class="text-base font-medium pb-3 px-4">Public datasets</h3>
-							<div class="w-full border-b border-slate-200" />
+							<div class="w-full border-b border-zinc-200 dark:border-zinc-700" />
 						</header>
 						<DropDownButton inner={true} href="https://data.library.bz/dbdumps/">
 							Database dumps (library's catalogue)
@@ -178,7 +180,7 @@
 				</a>
 				<ul
 					id="menu"
-					class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+					class="bg-white dark:bg-zinc-800 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 				>
 					<DropDownButton noNewWindow href="/search?mode=last">last added</DropDownButton>
 					<DropDownButton noNewWindow href="/search?mode=modified">last modified</DropDownButton>
@@ -197,7 +199,7 @@
 				</a>
 				<ul
 					id="menu"
-					class="bg-white dark:bg-zinc-700 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
+					class="bg-white dark:bg-zinc-800 overflow-hidden rounded-md transform scale-0 group-hover:scale-100 absolute top-12 transition duration-150 ease-in-out origin-top min-w-32 w-max"
 				>
 					<DropDownButton href="https://libgen.is/fiction/?">Fictions</DropDownButton>
 					<DropDownButton href="http://libgen.is/scimag/">Scientific articles</DropDownButton>
@@ -217,13 +219,12 @@
 		</ul>
 	</div>
 	<svg viewBox="0 0 2 3" aria-hidden="true" class="-translate-x-[1px] flex-shrink-0">
-		<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" class="fill-white dark:fill-zinc-700" />
+		<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" class="fill-white dark:fill-zinc-800" />
 	</svg>
 </nav>
 
 <style>
 	nav {
-		display: flex;
 		justify-content: center;
 		--background: #f6f8fa;
 	}

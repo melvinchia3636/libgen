@@ -9,7 +9,7 @@
 
 <label class="switch">
 	<input type="checkbox" on:click={onToggleTeam} checked={$theme === 'dark'} />
-	<span class="slider">
+	<span class="slider text-zinc-300">
 		<span class="circle">
 			<svg
 				xmlns="http://www.w3.org/2000/svg"

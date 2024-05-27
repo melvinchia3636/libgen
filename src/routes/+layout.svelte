@@ -70,7 +70,7 @@
 </script>
 
 <div
-	class="app bg-slate-200 dark:bg-zinc-800 w-full min-h-screen text-slate-700 dark:text-white flex flex-col"
+	class="app bg-zinc-200 dark:bg-zinc-900 w-full min-h-[100dvh] text-zinc-700 dark:text-white flex flex-col"
 	data-theme="light"
 >
 	<Header />
@@ -78,7 +78,7 @@
 	<main class="flex-1 flex flex-col w-full">
 		{#if $navigating}
 			<div class="flex-1 flex items-center justify-center">
-				<Icon icon="svg-spinners:90-ring" class="w-10 h-10 text-slate-700 dark:text-orange-500" />
+				<Icon icon="svg-spinners:90-ring" class="w-10 h-10 text-zinc-700 dark:text-orange-500" />
 			</div>
 		{:else}
 			<slot />
@@ -87,9 +87,9 @@
 
 	<footer class="mb-3 w-full flex flex-col gap-6 mt-8">
 		<p class="w-full px-8 text-xs text-center">
-			<span
+			<a href="https://thecodeblog.net"
 				class="inline-block text-base font-['JetBrains_Mono'] tracking-widest font-semibold opacity-50 mb-2"
-				>&lt;CODEBLOG/&gt;</span
+				>&lt;CODEBLOG/&gt;</a
 			>
 			<br />
 			Made with 🧡 by
@@ -101,6 +101,6 @@
 
 <style global>
 	* {
-		@apply transition-colors duration-500;
+		@apply transition-colors duration-200;
 	}
 </style>

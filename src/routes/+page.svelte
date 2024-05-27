@@ -10,17 +10,17 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section class="flex-1 flex flex-col items-center justify-center">
+<section class="flex-1 flex flex-col items-center justify-center px-8 sm:px-16 md:px-32">
 	<h1
-		class="text-[2.5rem] uppercase font-light tracking-widest pb-2 {isFilterOpen &&
-			'mt-32'} transition-all text-center"
+		class="text-4xl md:text-5xl uppercase tracking-widest mb-4 {isFilterOpen &&
+			'mt-32'} text-center"
 	>
-		Library Genesis
+		Library <span class='text-orange-500'>Genesis</span>
 	</h1>
-	<p class="mb-8 font-light tracking-wide text-center">
+	<p class="mb-8 font-light text-zinc-500 tracking-wide text-center text-base sm:text-lg">
 		Enables free access to content that is otherwise paywalled or not digitized elsewhere
 	</p>
-	<div class="w-3/5">
+	<div class="w-full px-0 xl:px-32">
 		<SearchBox bind:isFilterOpen />
 		<SearchFilter bind:isFilterOpen />
 	</div>

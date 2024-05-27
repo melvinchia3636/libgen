@@ -10,7 +10,7 @@
 	rel={noNewWindow ? '' : 'noopener noreferrer'}
 	class="block rounded-sm relative {inner
 		? 'px-4'
-		: 'px-6'} py-4 hover:bg-slate-100 dark:hover:bg-zinc-600 group"
+		: 'px-6'} py-4 hover:bg-zinc-100 dark:hover:bg-zinc-600 group"
 >
 	<li
 		class="w-full focus:outline-none rounded-md flex uppercase tracking-widest justify-between items-center gap-2 group-hover:font-medium"

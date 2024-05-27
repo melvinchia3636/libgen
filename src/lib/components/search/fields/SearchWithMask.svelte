@@ -5,14 +5,14 @@
 	export let srchWithMask: boolean;
 </script>
 
-<li class="flex items-center justify-between p-2 py-4">
+<li class="flex items-center justify-between p-2 gap-6 lg:gap-12 py-4">
 	<div>
 		<h2>Search with mask (word*)</h2>
-		<p class="text-slate-400 dark:text-zinc-500 text-sm font-light">
+		<p class="text-zinc-400 dark:text-zinc-500 text-sm font-light">
 			Select whether to perform wildcard searches or not.
 		</p>
 	</div>
-	<div class="w-80">
+	<div class="md:w-80 justify-end flex items-center">
 		<Switch
 			checked={srchWithMask}
 			on:change={(e) => searchWithMask.set(e.detail)}
