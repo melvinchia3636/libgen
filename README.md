@@ -1,6 +1,6 @@
-# 📚 Library Genesis Remade
+<center><h1 align="center">📚 Libgen Remade</h1></center>
 
-Welcome to the remade Library Genesis! This project uses SvelteKit and TailwindCSS to provide a modern, sleek, and responsive interface for exploring and accessing a vast collection of books.
+<p align="center">A modern Library Genesis redesign using SvelteKit and TailwindCSS.</p>
 
 ## The Problem
 
