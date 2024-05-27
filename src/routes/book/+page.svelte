@@ -14,12 +14,12 @@
 		{data.title} - {data['Author(s)']}
 	</title>
 </svelte:head>
-<section class="flex-1 flex gap-16 justify-center my-32 px-12">
-	<div class="w-1/5 h-full flex flex-col items-center">
+<section class="flex-1 flex flex-col md:flex-row gap-8 md:gap-16 justify-center my-32 px-8 lg:px-12">
+	<div class="w-full md:w-2/5 md:sticky top-24 lg:w-1/5 h-full flex flex-col">
 		{#if data.image !== '../img/blank.png'}
 			<img
 				src="http://libgen.is{data.image}"
-				class="w-full h-full object-contain"
+				class="w-full h-full object-contain max-w-[16rem]"
 				referrerpolicy="no-referrer"
 				alt=""
 			/>
@@ -29,8 +29,8 @@
 				class="w-64 h-full text-zinc-400 dark:text-zinc-600"
 			/>
 		{/if}
-		<h2 class="mt-4 mb-2 w-full text-left font-medium">Hashes</h2>
-		<div class="text-xs flex flex-col gap-2 w-full">
+		<h2 class="mt-4 mb-2 w-full text-left font-medium hidden md:block">Hashes</h2>
+		<div class="text-xs hidden md:flex flex-col gap-2 w-full">
 			{#each Object.entries(data.hashes) as [key, value]}
 				<div class="flex flex-col">
 					<span class="text-zinc-400 dark:text-zinc-400">{key}</span>
@@ -41,7 +41,7 @@
 			{/each}
 		</div>
 	</div>
-	<div class="w-4/5 h-full flex flex-col">
+	<div class="w-full md:w-3/5 lg:w-4/5 h-full flex flex-col">
 		<h1 class="text-3xl font-medium">{data.title}</h1>
 		<div class="flex flex-wrap mt-2">
 			{#each (data['Author(s)'] || '').split(/,|;/) as author, i}
@@ -111,8 +111,8 @@
 											<tbody>
 												{#each Object.entries(value) as [k, v]}
 													<tr class="border-b-2 border-zinc-300 dark:border-zinc-700">
-														<td class="py-2 px-3 border-r-2 border-zinc-300 dark:border-zinc-700">{k}</td>
-														<td class="px-3">{v || '-'}</td>
+														<td class="py-2 px-3 break-all border-r-2 border-zinc-300 dark:border-zinc-700">{k}</td>
+														<td class="px-3 break-all">{v || '-'}</td>
 													</tr>
 												{/each}
 											</tbody>

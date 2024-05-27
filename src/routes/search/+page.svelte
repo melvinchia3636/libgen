@@ -47,8 +47,8 @@
 			<p class="text-xl">No results found</p>
 		</div>
 	{:else if urlParams?.get('view') !== 'detailed'}
-		<div class="w-full overflow-x-auto px-8 flex">
-			<table class="w-4/5">
+		<div class="w-full flex overflow-x-auto px-8">
+			<table class="after:block after:w-8">
 				<thead class="border-b border-zinc-300 dark:border-zinc-600 !font-light">
 					<tr>
 						{#each Object.entries(HEADERS) as [sort, name]}
@@ -73,7 +73,7 @@
 								{/if}
 								<a
 									href="/book?md5={book.md5}"
-									class="flex flex-col gap-1 hover:underline hover:decoration-zinc-600 hover:text-zinc-800 dark:hover:decoration-zinc-500 dark:hover:text-zinc-300"
+									class="flex flex-col gap-1 min-w-[15rem] hover:underline hover:decoration-zinc-600 hover:text-zinc-800 dark:hover:decoration-zinc-500 dark:hover:text-zinc-300"
 								>
 									{book?.title?.title}
 									{#if book?.title?.edition}

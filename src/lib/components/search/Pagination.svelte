@@ -51,7 +51,7 @@
 			{/each}
 		{/if}
 	</ul>
-	<p class="mt-3">
+	<p class="mt-3 block sm:hidden">
 		Page {currentPage}
 	</p>
 	<li>

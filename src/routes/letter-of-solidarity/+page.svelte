@@ -3,8 +3,8 @@
 </svelte:head>
 
 <section class="w-full flex-1 flex justify-center">
-	<div class="w-3/5 py-32">
-		<h1 class="text-5xl font-['Edu_NSW_ACT_Foundation']">
+	<div class="w-4/5 md:w-3/5 py-32">
+		<h1 class="text-4xl sm:text-5xl font-['Edu_NSW_ACT_Foundation']">
 			In solidarity with <u class="font-['Edu_NSW_ACT_Foundation']">Library Genesis</u> and
 			<u class="font-['Edu_NSW_ACT_Foundation']">Sci-Hub</u>
 		</h1>
