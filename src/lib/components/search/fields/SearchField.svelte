@@ -23,10 +23,10 @@
 	</div>
 	<Listbox
 		bind:value={selectedSearchField}
-		class="relative"
+		class="relative w-full lg:w-80"
 	>
 		<ListboxButton
-			class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
+			class="whitespace-nowrap flex items-center gap-2 w-full justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
 		>
 			{selectedSearchField.name}
 			<Icon icon="uil:angle-down" class="text-zinc-700 dark:text-zinc-500 w-5 h-5" />
@@ -41,7 +41,7 @@
 			class="absolute bottom-12 right-0 z-[9999]"
 		>
 			<ListboxOptions
-				class="bg-white dark:bg-zinc-700 rounded-md shadow-md w-80 h-72 overflow-scroll"
+				class="bg-white dark:bg-zinc-700 rounded-md shadow-md w-full lg:w-80 h-72 overflow-scroll"
 			>
 				{#each searchFields as searchField, idx (searchField.id)}
 					<div class="px-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-500 cursor-pointer">

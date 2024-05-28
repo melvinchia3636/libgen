@@ -11,7 +11,7 @@
 			Select how many results to show on each page.
 		</p>
 	</div>
-	<div class="flex items-center justify-start sm:justify-end w-80 gap-10">
+	<div class="flex items-center justify-start sm:justify-end w-full sm:w-80 gap-10">
 		{#each [25, 50, 100] as number}
 			<button
 				class={resPerPage === number ? 'font-semibold text-orange-500' : 'dark:text-zinc-500'}

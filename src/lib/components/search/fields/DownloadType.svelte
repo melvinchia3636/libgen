@@ -26,10 +26,10 @@
 		class="flex justify-end relative w-full lg:w-auto"
 	>
 		<ListboxButton
-			class="whitespace-nowrap flex items-center gap-2 w-full lg:w-80 justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
+			class="text-left flex items-center gap-2 w-full lg:w-80 justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
 		>
 			{selectedDownloadType.name}
-			<Icon icon="uil:angle-down" class="text-zinc-700 dark:text-zinc-500 w-5 h-5" />
+			<Icon icon="uil:angle-down" class="text-zinc-700 shrink-0 dark:text-zinc-500 w-5 h-5" />
 		</ListboxButton>
 		<Transition
 			enter="transition-opacity duration-75"
@@ -46,7 +46,7 @@
 						<ListboxOption
 							value={downloadType}
 							class={({ selected }) =>
-								'px-2 py-3 border-zinc-200 dark:border-zinc-700 flex items-center gap-2 justify-between' +
+								'px-2 py-3  border-zinc-200 dark:border-zinc-700 flex items-center gap-2 justify-between' +
 								(selected ? ' font-medium' : ' font-light') +
 								(idx === downloadTypes.length - 1 ? ' border-b-0' : ' border-b')}
 							let:selected

@@ -21,9 +21,9 @@
 			Select which fields to sort by.
 		</p>
 	</div>
-	<Listbox bind:value={sort} class="relative">
+	<Listbox bind:value={sort} class="relative w-full lg:w-80">
 		<ListboxButton
-			class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
+			class="whitespace-nowrap flex items-center gap-2 w-full justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
 		>
 			{sort?.name ?? 'None'}
 			<Icon icon="uil:angle-down" class="text-zinc-700 dark:text-zinc-500 w-5 h-5" />
