@@ -36,22 +36,20 @@
 		if (targetQuery) {
 			switch (selectedCategory.id) {
 				case 1:
-					goto(
-						`/search?req=${targetQuery}&lg_topic=libgen&open=${
+				goto(`/search?req=${targetQuery}&lg_topic=libgen&open=${
 							$downloadType.id
 						}&view=${$viewResults}&res=${$resultsCount}&column=${$searchField.id}&phrase=${Number(
 							$searchWithMask
-						)}${$sortBy ? `&sort=${$sortBy.id}&sortmode=${$sortDirection}` : ''}`
-					);
+						)}${$sortBy ? `&sort=${$sortBy.id}&sortmode=${$sortDirection}` : ''}`);
 					break;
 				case 2:
-					goto(`https://libgen.is/fiction/?q=${targetQuery}`);
+					window.location = `https://libgen.is/fiction/?q=${targetQuery}`;
 					break;
 				case 3:
-					goto(`https://libgen.is/scimag/?q=${targetQuery}`);
+					window.location = `https://libgen.is/scimag/?q=${targetQuery}`;
 					break;
 				case 4:
-					goto(`https://magzdb.org/makelist?t=${targetQuery}`);
+					window.location = `https://magzdb.org/makelist?t=${targetQuery}`;
 					break;
 			}
 		}
@@ -67,7 +65,7 @@
 		class="flex items-center w-full bg-white dark:bg-zinc-800 p-2 px-4 rounded-md drop-shadow-md gap-4"
 	>
 		<Icon icon="uil:search" class="text-orange-500 w-5 h-5 flex-shrink-0" />
-		<Listbox class="hidden lg:block" value={selectedCategory} on:change={(e) => (selectedCategory = e.detail)}>
+		<Listbox class="hidden lg:block relative z-10" bind:value={selectedCategory}>
 			<ListboxButton class="whitespace-nowrap flex items-center gap-2">
 				{selectedCategory.name}
 				<Icon icon="uil:angle-down" class="text-zinc-700 dark:text-white w-5 h-5" />
@@ -122,7 +120,7 @@
 			/>
 		</button>
 	</div>
-	<Listbox class="block lg:hidden" value={selectedCategory} on:change={(e) => (selectedCategory = e.detail)}>
+	<Listbox class="block lg:hidden" bind:value={selectedCategory}>
 		<ListboxButton class="whitespace-nowrap flex items-center gap-2 py-3 px-4 rounded-md drop-shadow-md bg-white w-full justify-between">
 			<div class="flex gap-4">
 				<Icon icon="tabler:category" class="text-orange-500 w-5 h-5 flex-shrink-0" />

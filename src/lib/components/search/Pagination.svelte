@@ -32,7 +32,7 @@
 			</button>
 		{/if}
 	</li>
-	<ul class="list-style-none hidden sm:flex gap-4 items-center">
+	<ul class="list-style-none hidden md:flex gap-4 items-center">
 		{#if parseInt(data.resultsCount) > 0}
 			{#each Array.from( { length: Math.ceil(parseInt(data.resultsCount) / parseInt(urlParams?.get('res') || '25')) } )
 				.map((_, i) => i)
@@ -51,8 +51,8 @@
 			{/each}
 		{/if}
 	</ul>
-	<p class="mt-3 block sm:hidden">
-		Page {currentPage}
+	<p class="mt-3 block md:hidden">
+		Page {currentPage} of {Math.ceil(parseInt(data.resultsCount) / parseInt(urlParams?.get('res') || '25'))}
 	</p>
 	<li>
 		{#if parseInt(data.resultsCount) > parseInt(urlParams?.get('res') || '25')}

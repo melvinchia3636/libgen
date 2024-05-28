@@ -21,7 +21,7 @@
 			Select which fields to sort by.
 		</p>
 	</div>
-	<Listbox value={sort} on:change={(e) => sortBy.set(e.detail)} class="relative">
+	<Listbox bind:value={sort} class="relative">
 		<ListboxButton
 			class="whitespace-nowrap flex items-center gap-2 w-80 justify-between border-[1.5px] p-2 pl-3 border-zinc-200 dark:border-zinc-700 rounded-md"
 		>

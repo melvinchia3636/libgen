@@ -22,8 +22,7 @@
 		</p>
 	</div>
 	<Listbox
-		value={selectedDownloadType}
-		on:change={(e) => downloadType.set(e.detail)}
+		bind:value={selectedDownloadType}
 		class="flex justify-end relative w-full lg:w-auto"
 	>
 		<ListboxButton

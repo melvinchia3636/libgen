@@ -71,7 +71,7 @@
 									{#if Object.entries(value).length == 1}
 										<a
 											href={Object.entries(value)[0][1]}
-											class="text-orange-500 hover:text-orange-600"
+											class="text-orange-500 break-all hover:text-orange-600"
 										>
 											{Object.entries(value)[0][0]}
 										</a>
@@ -93,7 +93,7 @@
 												{#if Array.isArray(v)}
 													<a
 														href={v[1]}
-														class="text-orange-500 hover:text-orange-600"
+														class="text-orange-500 break-all hover:text-orange-600"
 														target="_blank"
 														rel="noopener noreferrer"
 													>

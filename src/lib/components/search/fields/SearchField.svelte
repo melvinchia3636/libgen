@@ -22,8 +22,7 @@
 		</p>
 	</div>
 	<Listbox
-		value={selectedSearchField}
-		on:change={(e) => searchField.set(e.detail)}
+		bind:value={selectedSearchField}
 		class="relative"
 	>
 		<ListboxButton

@@ -129,13 +129,13 @@
 		</div>
 	{:else}
 		<div class="w-4/5 flex flex-col mb-2">
-			<div class="flex items-center mb-2">
+			<div class="flex items-center flex-wrap mb-2">
 				Sort by:
 				{#each Object.entries(HEADERS) as [sort, name], idx}
 					<button
 						class="ml-2 {urlParams?.get('sort') === sort
-							? 'text-zinc-100 hover:text-zinc-200'
-							: 'text-zinc-500 hover:text-zinc-400'} transition-all flex items-center gap-1"
+							? 'text-orange-500 dark:text-zinc-100 hover:text-orange-600 dark:hover:text-zinc-200'
+							: 'text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-400'} transition-all flex items-center gap-1"
 						on:click={() => {
 							if (urlParams?.get('sort') !== sort || urlParams?.get('sortmode') === 'DESC') {
 								urlParams?.set('sort', sort);
@@ -157,7 +157,7 @@
 								icon={urlParams?.get('sort') === sort && urlParams.get('sortmode') === 'DESC'
 									? 'fluent:text-sort-descending-16-filled'
 									: 'fluent:text-sort-ascending-16-filled'}
-								class="text-zinc-100 stroke-bold"
+								class="text-orange-500 dark:text-zinc-100 stroke-bold"
 							/>{idx !== Object.keys(HEADERS).length - 1 ? ',' : ''}
 						{/if}
 					</button>
@@ -165,7 +165,7 @@
 			</div>
 			{#each data.data as book}
 				<div
-					class="flex p-8 mb-4 gap-8 bg-white dark:bg-zinc-800/50 rounded-md shadow-md items-start"
+					class="flex flex-col lg:flex-row p-8 mb-4 gap-8 bg-white dark:bg-zinc-800/50 rounded-md shadow-md items-start"
 				>
 					<img
 						src="http://libgen.is{book.image}"
@@ -188,7 +188,7 @@
 								{/if}
 							{/each}
 						</p>
-						<div class="grid grid-cols-[repeat(auto-fit,minmax(33%,1fr))] w-full gap-y-4 mt-6">
+						<div class="grid grid-cols-[repeat(auto-fit,minmax(12rem,1fr))] gap-x-8 w-full gap-y-4 mt-6">
 							{#each Object.entries(book) as [key, value]}
 								{#if value && !['image', 'Title', 'Author(s)', 'md5'].includes(key)}
 									<div class="flex flex-col gap-1">
