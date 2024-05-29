@@ -48,7 +48,7 @@
 		</div>
 	{:else if urlParams?.get('view') !== 'detailed'}
 		<div class="w-full flex overflow-x-auto px-8">
-			<table class="after:block after:w-8">
+			<table class="after:block after:w-8 w-full">
 				<thead class="border-b border-zinc-300 dark:border-zinc-600 !font-light">
 					<tr>
 						{#each Object.entries(HEADERS) as [sort, name]}

@@ -79,7 +79,7 @@
 										<ul class="list-disc list-inside">
 											{#each Object.entries(value) as [k, v]}
 												<li>
-													<a href={v} class="text-orange-500 hover:text-orange-600">
+													<a href={v} class="text-orange-500 break-all hover:text-orange-600">
 														{k}
 													</a>
 												</li>
