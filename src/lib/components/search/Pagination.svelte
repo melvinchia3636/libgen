@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { resultsCount } from '$lib/store/search';
 	import Icon from '@iconify/svelte';
 
 	export let data: { [key: string]: any } = {};
@@ -52,7 +51,9 @@
 		{/if}
 	</ul>
 	<p class="mt-3 block md:hidden">
-		Page {currentPage} of {Math.ceil(parseInt(data.resultsCount) / parseInt(urlParams?.get('res') || '25'))}
+		Page {currentPage} of {Math.ceil(
+			parseInt(data.resultsCount) / parseInt(urlParams?.get('res') || '25')
+		)}
 	</p>
 	<li>
 		{#if parseInt(data.resultsCount) > parseInt(urlParams?.get('res') || '25')}

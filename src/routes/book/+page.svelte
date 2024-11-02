@@ -14,7 +14,9 @@
 		{data.title} - {data['Author(s)']}
 	</title>
 </svelte:head>
-<section class="flex-1 flex flex-col md:flex-row gap-8 md:gap-16 justify-center my-32 px-8 lg:px-12">
+<section
+	class="flex-1 flex flex-col md:flex-row gap-8 md:gap-16 justify-center my-32 px-8 lg:px-12"
+>
 	<div class="w-full md:w-2/5 md:sticky top-24 lg:w-1/5 h-full flex flex-col">
 		{#if data.image !== '../img/blank.png'}
 			<img
@@ -111,7 +113,10 @@
 											<tbody>
 												{#each Object.entries(value) as [k, v]}
 													<tr class="border-b-2 border-zinc-300 dark:border-zinc-700">
-														<td class="py-2 px-3 break-all border-r-2 border-zinc-300 dark:border-zinc-700">{k}</td>
+														<td
+															class="py-2 px-3 break-all border-r-2 border-zinc-300 dark:border-zinc-700"
+															>{k}</td
+														>
 														<td class="px-3 break-all">{v || '-'}</td>
 													</tr>
 												{/each}
